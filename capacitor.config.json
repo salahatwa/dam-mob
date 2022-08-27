@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "dampharm",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
