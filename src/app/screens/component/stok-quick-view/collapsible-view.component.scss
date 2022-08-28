@@ -1,0 +1,142 @@
+/***************************Stock quick view *****************************/
+.stockGridContainer{
+    // width: 349px;
+    // height: 124px;
+    // background-color: #6b45bc;
+    background-color: var(--ion-color-primary-bg);
+    padding: 5px;
+  }
+
+  
+
+body.dark :host .stockGridContainer {
+  background-color: #2e2e2e;
+}
+
+body.dark :host .stockHeaderText {
+  color: #787878;
+}
+
+
+
+  
+  .stockHeaderText{
+    // width: 90px;
+    // height: 13px;
+    // font-family: AlinmaTheSans-Plain;
+    // font-size: 8px;
+    // font-weight: normal;
+    // font-stretch: normal;
+    // font-style: normal;
+    // line-height: normal;
+    // letter-spacing: normal;
+    // text-align: left;
+    // color: #99b9bc;
+   // font-family: AlinmaTheSans-Plain;
+   font-size: 10px;
+   white-space: nowrap;
+    /* letter-spacing: normal; */
+    /* text-align: left; */
+    color: #99b9bc;
+  }
+  
+  .stockValuesWhite{
+  //  font-family: AlinmaTheSans-Plain;
+    font-size: 11px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    color: white;
+  }
+  .stockValuesRed{
+  //  font-family: AlinmaTheSans-Plain;
+    font-size: 11px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    color: red;
+    display: inline-block;
+    direction: ltr!important;
+  }
+  .stockValuesGreen{
+   // font-family: AlinmaTheSans-Plain;
+    font-size: 11px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    color:#21bf73;
+    display: inline-block;
+    direction: ltr!important;
+    }
+  
+  .stockButtonGreen{
+    height: 20px;
+   // width: 70px;
+    --background: #21bf73;
+  }
+  
+  .stockButtonRed{
+    height: 20px;
+   // width: 82px;
+    --background: #da2d2d;
+  }
+
+  .stockHomeButtonRed{
+    height: 20px;
+   // width: 70px;
+    --background: #da2d2d;
+  }
+
+
+  .stockButtonSecondary{
+    height: 20px;
+   // width: 82px;
+    --background: #337479;
+  }
+
+  .stockButtonPurple{
+    height: 20px;
+   // width: 70px;
+    --background: #8d4189;
+  }
+
+  ion-button{
+    padding: 0;
+    height: 24px !important;
+  }
+  
+  .stockButtonTransparent{
+    height: 20px;
+   // width: 70px;
+    border: 1px solid white ;
+    --background: #6b45bc;
+  }
+
+  body.dark :host .thirdBTN {
+    --background: #4b4b4b;
+  }
+  
+  .stockButtonText{
+    width: 69px;
+    height: 17px;
+    font-family: AlinmaTheSans;
+    font-size: 10px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: white;
+  }
+  
+
+  // .stockButtonGreen,
+  // .stockButtonRed,
+  // .stockButtonTransparent{
+  //   padding:0 5px
+  // }
+
+  .stock-quick-ico{
+    width: 65px;
+    height: 65px;
+    position: relative;
+    left: 3px;
+  }

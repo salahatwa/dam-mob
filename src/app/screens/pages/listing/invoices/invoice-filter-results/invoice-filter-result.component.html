@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-menu-button autoHide="true"></ion-menu-button> -->
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Invoice Search Result
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid style="padding: 0px;">
+    <ion-row class="criteria-container sticky-top">
+      <ion-col size="6" style="border-bottom: 1px solid #cddfe1;">
+        <span class="textClass">Customer:</span>
+        <span class="valueClass">{{filter?.customer?.name}}</span>
+      </ion-col>
+      <ion-col size="6" style="border-bottom: 1px solid #cddfe1;padding-top: 0px;">
+        <ion-row id="period-container">
+          <ion-col size="4" class="textClass">From:</ion-col>
+          <ion-col style="padding: 0px;" size="7">
+            <span class="valueClass">{{filter?.fromDate}}</span>
+            <span class="valueClass">{{filter?.toDate}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <span class="textClass">Status:</span>
+        <span class="valueClass">{{filter?.statusList}}</span>
+      </ion-col>
+      <ion-col size="6">
+        <span class="textClass">State:</span>
+        <span class="valueClass">{{filter?.state}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: 10px;">
+      <ion-grid class="standing-order-header">
+        
+          <ion-list>
+
+            <!-- (click)="presentItemSheet(item.id)" -->
+
+            <ion-item button *ngFor="let item of invoices">
+              <ion-avatar slot="start">
+                <img src="assets/images/invoice.png">
+              </ion-avatar>
+
+              <ion-label text-wrap>
+                <h3>{{ item.customer?.name }}</h3>
+                {{ item.totalPrice }}
+              </ion-label>
+
+              <!-- <ion-icon slot="end" *ngIf="item.Type == 'movie'" name="videocam"></ion-icon>
+              <ion-icon slot="end" *ngIf="item.Type == 'series'" name="tv"></ion-icon>
+              <ion-icon slot="end" *ngIf="item.Type == 'game'" name="logo-game-controller-b"></ion-icon> -->
+
+            </ion-item>
+
+            <ion-infinite-scroll (ionInfinite)="getItems($event)">
+              <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+
+
+          </ion-list>
+
+      </ion-grid>
+    </ion-row>
+  </ion-grid>
+
+
+
+</ion-content>
+<ion-footer>
+
+  <ion-grid class="ion-padding">
+    <app-button (click)="backToSearch()" expand="block" size="" color="primary" fill="solid" strong="false"
+      target="_blank">
+      Back to Search
+    </app-button>
+  </ion-grid>
+</ion-footer>

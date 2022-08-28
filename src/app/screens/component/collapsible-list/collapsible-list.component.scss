@@ -1,0 +1,117 @@
+ion-card-content {
+ 
+    padding: 0 !important;
+   
+  }
+ 
+.changeValueContainerGreen{
+  background-color:#21BF73;
+  padding: 5px 0;
+}
+.changeValueContainerRed{
+  background-color: #da2d2d;
+  padding: 5px 0;
+}
+
+.changeValueContainerGrey{
+  background-color: #a5a5a5;
+  padding: 5px 0;
+}
+
+.changeValueContainerSkyBlue{
+  background-color: #83afb4
+  ;
+  padding: 5px 0;
+}
+
+.changeValueContainerOrange{
+  background-color: #f7d118;
+  padding: 5px 0;
+}
+
+.changeValueContainerPurple{
+  background-color: #8d4189
+  ;
+  padding: 5px 0;
+}
+
+
+
+.collapsible-header-list{
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+.changableValueTextGreen{
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color: #21BF73;
+  display: inline-block;
+  direction: ltr !important;
+}
+.changableValueTextRed{
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  color:  #da2d2d;
+  display: inline-block;
+  direction: ltr !important;
+}
+  
+.collapsible-list-card{
+  // border-bottom: 0.4px solid grey;
+  margin: 0 auto;
+  border-radius: 0;
+}
+
+.collapsible-label{
+  display: block;
+}
+.ionCradClass{
+  margin-bottom: -21px;
+  border-bottom: 1px solid grey;
+}
+.ionCardRow{
+  // color: #005457;
+  color: var(--ion-color-primary-txt);
+  font-size: 10px;
+  text-align: center;
+}
+  
+ion-col{
+  font-size: var(--col-font-size, 10px);
+  font-weight: bold;
+  text-align: center;
+}
+
+
+:host(.symbols-list) {
+  ion-col:nth-child(2) {
+    text-align: start;
+  }
+}
+
+
+.even{
+  background: #e6eff0;
+}
+.odd{
+  background: #ffffff;
+}
+
+body.dark :host .collapsible-list-card {
+  background: #343434 !important;
+  border-bottom: #a5a5a5 1px solid;
+}
+
+.code-container{
+  font-size: 10px;
+  border: 1px solid #b5cfd2;
+  padding: 1px;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+}

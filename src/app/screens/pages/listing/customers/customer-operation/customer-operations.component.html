@@ -1,0 +1,82 @@
+<ion-content>
+  <div class="header">
+    <ion-buttons>
+      <ion-button routerLink="/home/listing/customers">
+        <ion-icon slot="icon-only" color='light' name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons>
+      <ion-button>
+        <ion-icon slot="icon-only" color='light' name="d-heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+
+  <div class="card">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+
+      <!-- <ion-item>
+        <ion-input type="hidden" name="id" #id="ngModel" [(ngModel)]="customerService.selectedCustomer.id"></ion-input>
+      </ion-item> -->
+
+
+
+      <div class="mt-2">
+        <ion-item>
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input placeholder="أسم عميل" formControlName="name"></ion-input>
+        </ion-item>
+        <small class="text-danger" *ngIf="f.name.errors?.required && f.name.touched">Name is required</small>
+        <small class="text-danger" *ngIf="f.name.errors?.pattern&& f.name.touched">Invalid pattern</small>
+      </div>
+
+      <div class="mt-2">
+        <ion-item>
+          <ion-label position="stacked">State</ion-label>
+          <ion-input placeholder="أسم المحافظة" formControlName="state"></ion-input>
+        </ion-item>
+        <small class="text-danger" *ngIf="f.state.errors?.required && f.state.touched">State is required</small>
+        <small class="text-danger" *ngIf="f.state.errors?.pattern&& f.state.touched">Invalid pattern</small>
+      </div>
+
+
+    
+
+      <div class="mt-2">
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input placeholder="البريد الإلكترونى" formControlName="email"></ion-input>
+        </ion-item>
+        <small class="text-danger" *ngIf="f.email.errors?.required && f.email.touched">Email is required</small>
+        <small class="text-danger" *ngIf="f.email.errors?.pattern&& f.email.touched">Invalid pattern</small>
+      </div>
+
+
+      <div class="mt-2">
+        <ion-item>
+          <ion-label position="stacked">Phone</ion-label>
+          <ion-input type="number" placeholder="تليفون" formControlName="phone"></ion-input>
+        </ion-item>
+        <small class="text-danger" *ngIf="f.phone.errors?.required && f.phone.touched">Phone is required</small>
+        <small class="text-danger" *ngIf="f.phone.errors?.pattern&& f.phone.touched">Invalid pattern</small>
+      </div>
+
+
+      <div class="mt-2">
+        <ion-item>
+          <ion-label position="stacked">Address</ion-label>
+          <ion-textarea placeholder="العنوان" formControlName="address"></ion-textarea>
+        </ion-item>
+        <small class="text-danger" *ngIf="f.address.errors?.required && f.address.touched">Address is required</small>
+        <small class="text-danger" *ngIf="f.address.errors?.pattern&& f.address.touched">Invalid pattern</small>
+      </div>
+
+
+
+      <app-button [disabled]="customerForm.invalid" (click)="onSubmit()">Add To Cart</app-button>
+
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,80 @@
+.criteria-container{
+    background-color: #e6eff0;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: auto;
+}
+
+body.dark :host .criteria-container{
+    background-color: grey;
+}
+
+.textClass{
+    width: 55px;
+    height: 23px;
+    font-family: AlinmaTheSans;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #6b45bc;
+    padding-inline-start: 3px;
+}
+
+body.dark :host .textClass{
+    color: white;
+}
+
+
+.valueClass{
+    width: 55px;
+    height: 23px;
+    font-family: AlinmaTheSans;
+    font-size: 13px;
+    padding: 5px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #6b45bc;
+  //  white-space: unset !important;
+}
+body.dark :host .valueClass{
+    color: white;
+}
+
+
+.card-height{
+    height: 500px;
+    overflow-y: scroll;
+    padding: 0px 0;
+}
+
+.standing-order-header{
+    padding: 5px 0;
+}
+
+.standing-order-toolbar{
+    --background: #6b45bc;
+    text-align: center;
+    color: white;
+}
+
+ion-header {
+    ion-toolbar {
+      --background: #6b45bc;
+      color: #fff;
+    }
+  }
+
+
+  .sticky-top{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }

@@ -1,0 +1,7 @@
+{
+   "app": {
+      "dashboard": "Dashboard",
+      "profile": "Profile",
+      "create-invoice": "Create Invoice"
+   }
+}

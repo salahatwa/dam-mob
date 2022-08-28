@@ -1,0 +1,82 @@
+ion-modal {
+  --height: 50%;
+  --width: 80%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: #6b45bc;
+  --color: white;
+}
+
+ion-buttons {
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  ion-button {
+    transform: translateX(-50%);
+    --background: #6b45bc;
+    font-weight: 700;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+  }
+}
+
+ion-button {
+  transform: translateX(-50%);
+  --background: #6b45bc;
+  font-weight: 700;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+.list-header {
+  font-weight: 700;
+  color: #515151;
+  font-size: 1.8rem;
+  // margin-bottom: 1.6rem;
+  // margin-top: 2.5rem;
+}
+
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+
+  .c1 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #515151;
+    margin: 0;
+  }
+  .c2 {
+    border-radius: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    // overflow: hidden;
+  }
+}

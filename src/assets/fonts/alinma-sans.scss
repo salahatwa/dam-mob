@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'AlinmaTheSans';
+    // src: url('../assets/fonts/AlinmaTheSans-Plain.eot');
+    src: url('../fonts/AlinmaTheSans-Plain.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AlinmaTheSans-Plain.svg#AlinmaTheSans-Plain') format('svg'),
+        url('../fonts/AlinmaTheSans-Plain.ttf') format('truetype'),
+        url('../fonts/AlinmaTheSans-Plain.woff') format('woff'),
+        url('../fonts/AlinmaTheSansPlain.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'AlinmaTheSans';
+    font-weight: bold;
+    // src: url('../fonts/AlinmaTheSans-Bold.eot');
+    src: url('../fonts/AlinmaTheSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/AlinmaTheSans-Bold.svg#AlinmaTheSans-Bold') format('svg'),
+        url('../fonts/AlinmaTheSans-Bold.ttf') format('truetype'),
+        url('../fonts/AlinmaTheSans-Bold.woff') format('woff'),
+        url('../fonts/AlinmaTheSansBold.woff2') format('woff2');
+}
