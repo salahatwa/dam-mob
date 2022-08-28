@@ -1,0 +1,84 @@
+<div>
+
+<ion-card class="collapsible-list-card" [ngClass]="rowClass" (click)="expandItem()">
+
+<ion-card-header class="collapsible-header-list">
+
+  <ion-row class="ionCardRow" size="12"> 
+
+    <ion-col id="code-container" style="text-align: start;" *ngIf="formName == 'outstanding'" [size]="colSixSize || ''">
+
+      <ion-label class="code-container">{{cardTextOneThirdLine}}</ion-label>
+      
+    </ion-col>
+    <ion-col style="text-align: start;" [size]="colOneSize || ''">
+<span class="collapsible-label" [ngStyle]="formName === 'home'? {'border': '1px solid #b5cfd2','text-align': 'center','width': 'auto','white-space':'nowrap'}:{'font-size':'10px'}">{{cardTextOne}}</span>
+<span *ngIf="formName == 'outstanding'" style="font-size: 10px;"  [ngStyle]="statusColor === 'danger' ? {'color': ' #da2d2d'} : {'color': '#21BF73'}"> {{cardTextOneSecondLine}} - {{cardTextOneFourthLine}}</span>
+   
+   
+    </ion-col>
+
+    <ion-col [size]="colTwoSize || ''">
+
+      {{cardTextTwo}}
+
+    </ion-col>
+
+    <ion-col [size]="colThreeSize || ''">
+
+      {{cardTextThree}}
+
+    </ion-col>
+    <ion-col *ngIf="cardTextSeven" [size]="colSevenSize || ''">
+
+      {{cardTextSeven}}
+
+    </ion-col>
+    <ion-col [hidden]="!cardTextFour && formName != 'outstanding' " [size]="colFourSize || ''">
+
+      {{cardTextFour}}
+
+    </ion-col>
+    <ion-col  [hidden]="cardTextFive == null" [size]="colFiveSize || ''">
+      <div [hidden]="formName != 'home' && formName != 'mutualFund'" *ngIf="uncommafy(cardTextFive) > 0" class="changableValueTextGreen">
+        <div Class="">
+          {{cardTextFive}} <span *ngIf="formName == 'mutualFund'">%</span>
+        </div>
+      </div>
+      <div [hidden]="formName != 'home' && formName != 'mutualFund'" *ngIf="uncommafy(cardTextFive) < 0" class="changableValueTextRed" >
+        <div Class="">
+          {{cardTextFive}} <span *ngIf="formName == 'mutualFund'">%</span>
+        </div>
+      </div>
+      <div [hidden]="formName != 'home' && formName != 'mutualFund'" *ngIf="uncommafy(cardTextFive) == 0">
+        <div Class="">
+          {{cardTextFive}} <span *ngIf="formName == 'mutualFund'">%</span>
+        </div>
+      </div>
+      <div *ngIf="formName == 'outstanding' || formName =='MFOutstanding'" [ngClass]="boxColor">
+        <div Class="changableValueText" style="text-align: center;color:white;font-size: 9px;">
+          {{cardTextFive}}
+        </div>
+      </div>
+    </ion-col>
+    <ion-col [hidden]="arrow" [size]=".9">
+      <ion-icon  name="chevron-down-outline" style="width: 25px;height: 17px;"></ion-icon>
+    </ion-col>
+
+  </ion-row>
+
+</ion-card-header>
+
+<ion-card-content>
+
+  <dam-expandable expandHeight="195px" [expanded]="expand">
+   
+   <ng-content></ng-content>
+
+  </dam-expandable>
+
+</ion-card-content>
+
+</ion-card>
+
+</div>

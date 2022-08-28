@@ -1,0 +1,85 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "./assets/fonts/alinma-sans.scss";
+
+* {
+    font-family: AlinmaTheSans;
+}
+
+ion-searchbar {
+    .searchbar-input-container {
+        input {
+            padding-top: 14px !important;
+            padding-bottom: 12px !important;
+            font-size: 18px !important;
+        }
+        .searchbar-search-icon {
+            top: 15px !important;
+            width: 25px;
+            height: 25px;
+        }
+    }
+}
+
+.alert {
+    --border: 1px solid transparent;
+    --border-radius: 3px;
+    --border-style: solid;
+}
+
+.alert-success {
+    --background: #dff0d8;
+    --border-color: #d6e9c6;
+    --color: #3c763d;
+}
+
+.alert-info {
+    --background: #d9edf7;
+    --border-color: #bce8f1;
+    --color: #31708f;
+}
+
+.alert-warning {
+    --background: #fcf8e3;
+    --border-color: #faebcc;
+    --color: #8a6d3b;
+}
+
+.alert-danger {
+    --background: #f2dede;
+    --border-color: #ebccd1;
+    --color: #a94442;
+}
+
+.sheet-class {
+    --background: #e5e5e5;
+}
+
+
+.transparent-modal .modal-wrapper {
+    --background: rgba(44, 39, 45, 0.7);
+}

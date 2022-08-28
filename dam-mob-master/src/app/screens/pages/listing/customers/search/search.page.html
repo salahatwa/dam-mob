@@ -1,0 +1,44 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+
+<ion-header>
+  <ion-toolbar [style.--background]="color">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title>Customers</ion-title>
+          <ion-buttons end>
+            <!-- <button ion-button class="close" (click)="dismiss()">{{ t.CLOSE }}</button> -->
+            <ion-button (click)="dismiss()" id='close-button'>Close</ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        <ion-searchbar [(ngModel)]="queryText" (ngModelChange)="filter()" [placeholder]="'Filter Customer'">
+        </ion-searchbar>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item (click)="select(customer)" *ngFor="let customer of customers">
+      <span class="customer-id"> {{ customer?.id }} </span>
+      <span class="search-name">
+        {{ customer?.name }}
+      </span>
+    </ion-item>
+  </ion-list>
+</ion-content>
