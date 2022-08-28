@@ -1,7 +1,0 @@
-{
-  "name": "dampharm",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
