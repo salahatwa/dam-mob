@@ -1,0 +1,27 @@
+
+
+{
+    "invoice": {
+        "search":"بحث الفواتير",
+        "noitem": "لم تقم بإختيار أى منتج حاليا",
+        "customers":"العملاء",
+        "products":"المنتجات",
+        "select-customer":"اختر عميل",
+        "select-product":"اختر منتج",
+        "create":"إضافة فاتورة بمبلغ ",
+        "total":"المجموع",
+        "price":"السعر",
+        "available-qty":"الكمية المتاحة",
+        "qty":"الكمية",
+        "bonus":"البونص",
+        "discount":"الخصم",
+        "status":"الحالة",
+        "select-status":"اختر الحالة",
+        "fromDate":"من تاريخ",
+        "toDate":"إلى تاريخ"
+    },
+    "btn": {
+        "ok": "موافق",
+        "cancel": "إغلاق"
+    }
+}

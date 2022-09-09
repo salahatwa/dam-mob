@@ -1,158 +1,168 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar class="standing-order-toolbar">
     <ion-buttons slot="start">
-      <!-- <ion-menu-button autoHide="true"></ion-menu-button> -->
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      Search Invoice
-    </ion-title>
+    <ion-title>{{ "invoice.search" | translate }}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
+  <div class="header">
+    <ion-buttons>
+      <ion-button routerLink="/home/listing/invoices">
+        <ion-icon slot="icon-only" color='light' name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <span class="walletClass">Search invoices</span>
-      </ion-col>
-    </ion-row>
+    <ion-buttons>
+      <ion-button>
+        <ion-icon slot="icon-only" color="light" name="d-heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
 
-    <ion-row style="padding-top: 10px;">
-      <ion-col>
-        <span class="walletClass">Customer</span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <!-- <ion-select interface="action-sheet" mode="ios" [interfaceOptions]="{header: t.wallets, cssClass: 'app-select'}" [value]="allStandardPortfolios[0]?.id" [(ngModel)]="selectedPortfolioID" class="standing-order-select-item" cancelText="{{t.CANCEL}}">
-            <ion-select-option *ngFor="let item of allStandardPortfolios" [value]="item.id" selected>{{item.id}}</ion-select-option>
-          </ion-select> -->
-
-        <ion-select placeholder="Select Customer" interface="action-sheet" mode="ios"
-          [interfaceOptions]="{header: 'Cust', cssClass: 'app-select'}" [(ngModel)]="filter.customer" name="customer"
-          okText="OK" cancelText="Cancel">
-
-          <ion-select-option *ngFor="let customer of customers" [value]="customer">
-            {{ customer.name }} | {{customer.address}}
-          </ion-select-option>
-
-        </ion-select>
-
-
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <span class="walletClass">Status</span>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-list>
-        <ion-item>
-          <ion-select placeholder="Select Status" [multiple]="true" [(ngModel)]="filter.statusList">
-            <ion-select-option *ngFor="let invStatus of statusTypes" [value]="invStatus?.key">
-              {{ invStatus?.value }}
+  <div class="card">
+    <form class="panel" style="height: 100%">
+      
+      <div id="search-overlay-container">
+        <div id="search-overlay" (click)="openSearch()"></div>
+        <ion-item class="floating-input">
+          <ion-label position="floating">{{
+            "invoice.customers" | translate
+          }}</ion-label>
+          <ion-select
+            placeholder="{{ 'invoice.select-customer' | translate }}"
+            interface="action-sheet"
+            mode="ios"
+            [interfaceOptions]="{ header: 'Cust', cssClass: 'app-select' }"
+            [(ngModel)]="filter.customer"
+            name="customer"
+          >
+            <ion-select-option
+              *ngFor="let customer of customers"
+              [value]="customer"
+            >
+              {{ customer.name }} | {{ customer.address }}
             </ion-select-option>
           </ion-select>
         </ion-item>
-      </ion-list>
-    </ion-row>
+      </div>
 
-    <hr style="background-color: #dedede;">
+      <ion-item class="floating-input">
+        <ion-label position="floating">{{
+          "invoice.status" | translate
+        }}</ion-label>
+        <ion-select
+          placeholder="{{ 'invoice.select-status' | translate }}"
+          [multiple]="true"
+          name="statusList"
+          [(ngModel)]="filter.statusList"
+          [interfaceOptions]="{ header: 'Status', cssClass: 'app-select' }"
+          okText="OK"
+          cancelText="Cancel"
+        >
+          <ion-select-option
+            *ngFor="let invStatus of statusTypes"
+            [value]="invStatus?.key"
+          >
+            {{ invStatus?.value }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
 
-    <!-- <ion-row>
-      <ion-col>
-        <span class="walletClass">Type</span>
-      </ion-col>
-     
-    </ion-row>
-    <ion-row ion-segment mode="md">
-      <ion-segment scrollable="true" [(ngModel)]="typeID">
-        <ion-segment-button *ngFor="let type of types" [value]="type.id" >
-          <ion-label>{{ type.name}}</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-row> -->
+      <ion-item class="floating-input">
+        <ion-label class="walletClass" position="floating">{{
+          "invoice.fromDate" | translate
+        }}</ion-label>
+        <ion-input
+          [(ngModel)]="filter.fromDate"
+          id="fromDate"
+          name="fromDate"
+          #fromDate="ngModel"
+          required
+        >
+        </ion-input>
+        <ion-icon name="calendar" class="icon" slot="start"></ion-icon>
 
-    <hr style="background-color: #dedede;">
+        <ion-modal trigger="fromDate" class="date-time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime
+                displayFormat="yyyy-MM-dd"
+                class="rounded-date"
+                presentation="date"
+                [(ngModel)]="filter.fromDate"
+                [ngModelOptions]="{ standalone: true }"
+                showDefaultButtons="true"
+                doneText="{{ 'btn.ok' | translate }}"
+                cancelText="{{ 'btn.cancel' | translate }}"
+              >
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
 
-    <ion-row>
-      <ion-col size="12">
-        <ion-label class="walletClass">Period</ion-label>
-      </ion-col>
-      <ion-row>
-        <ion-col size="6" [ngClass]="selectedPeriod == 1 ?  'investment-btn' : 'in-active-btn'">
-          <ion-button expand="full" color="txt" (click)="changePeriod(1)">
-            Specific Period
-          </ion-button>
-        </ion-col>
-        <ion-col class="home-btn-padding" [ngClass]="selectedPeriod == 2 ?  'investment-btn' : 'in-active-btn'"
-          size="6">
-          <ion-button expand="full" color="txt" (click)="changePeriod(2)">
-            From Date
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-row>
+      <ion-item class="floating-input">
+        <ion-label class="walletClass" position="floating">{{
+          "invoice.toDate" | translate
+        }}</ion-label>
+        <ion-input
+          [(ngModel)]="filter.toDate"
+          id="toDate"
+          name="toDate"
+          #toDate="ngModel"
+          required
+        >
+        </ion-input>
+        <ion-icon name="calendar" class="icon" slot="start"></ion-icon>
 
-    <hr style="background-color: #dedede;">
-
-     <!-- <ion-row ion-segment mode="md" [hidden]="selectedPeriod == 2">
-     <ion-col size="12" class="walletClass">{{t.specificPeriod}}</ion-col>
-     <ion-col size="12" style="margin-top: 10px;">
-      <ion-segment scrollable="true" [(ngModel)]="periodID">
-        <ion-segment-button *ngFor="let period of periods" [value]="period.id" >
-          <ion-label>{{period.name}}</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-col>
-    </ion-row> -->
-
-    <ion-row class="filter-orders-row filter-orders" [hidden]="selectedPeriod == 1">
-      <ion-col size="10">
-        <ion-label class="walletClass" position="floating">From</ion-label>
-        <ion-item class="filter-orders-item">
-        
-          <ion-datetime placeholder="00/00/0000" displayFormat="yyyy-MM-dd" presentation="date" [(ngModel)]='filter.fromDate' max='2030' doneText="Done" cancelText="Cancel"></ion-datetime>
-        </ion-item>
-      </ion-col>
-      <ion-col class="filter-orders-col-icon" size="2">
-        <div class="calendar-bk">
-          <ion-icon name="calendar-outline"></ion-icon>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="filter-orders-row filter-orders" [hidden]="selectedPeriod == 1">
-      <ion-col size="10">
-        <ion-label class="walletClass" position="floating">To</ion-label>
-        <ion-item class="filter-orders-item">
-          <ion-datetime placeholder="00/00/0000" displayFormat="yyyy-MM-dd" presentation="date" [(ngModel)]='filter.toDate' max='{{currentDate}}' max='2030' doneText="Done" cancelText="Cancel"></ion-datetime>
-        </ion-item>
-      </ion-col>
-      <ion-col class="filter-orders-col-icon" size="2">
-        <div class="calendar-bk">
-          <ion-icon name="calendar-outline"></ion-icon>
-        </div>
-      </ion-col>
-    </ion-row>
-
-  </ion-grid>
+        <ion-modal trigger="toDate" class="date-time-modal">
+          <ng-template>
+            <ion-content>
+              <ion-datetime
+                displayFormat="yyyy-MM-dd"
+                class="rounded-date"
+                presentation="date"
+                [(ngModel)]="filter.toDate"
+                [ngModelOptions]="{ standalone: true }"
+                showDefaultButtons="true"
+                doneText="{{ 'btn.ok' | translate }}"
+                cancelText="{{ 'btn.cancel' | translate }}"
+              >
+              </ion-datetime>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+    </form>
+  </div>
 </ion-content>
 <ion-footer>
-
   <!-- <ion-button id='save-button'  expand="block" (click)="search()"  >
   Filter orders
   </ion-button> -->
-  <ion-grid class="ion-padding">
-    <app-button (click)="search()" expand="block" size="" color="primary" fill="solid" strong="false" target="_blank">
+  <!-- <ion-grid class="ion-padding">
+    <app-button
+      (click)="search()"
+      expand="block"
+      size=""
+      color="primary"
+      fill="solid"
+      strong="false"
+      target="_blank"
+    >
       Search
     </app-button>
-
-
-  </ion-grid>
+  </ion-grid> -->
   <!-- <tadawul-loader *ngIf="showLoader"></tadawul-loader> -->
+  <ion-button
+    (click)="search()"
+    color="primary"
+    expand="block"
+    fill="solid"
+    class="ion-margin"
+    >{{ "invoice.search" | translate }}</ion-button
+  >
 </ion-footer>

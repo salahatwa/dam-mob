@@ -23,8 +23,8 @@ export class IInvoiceFilter {
   customer?: Customer=null;
   statusList?: []=[];
   state?: string;
-  fromDate?: Date;
-  toDate?: Date;
+  fromDate?: string;
+  toDate?: string;
 }
 
 export interface ItemInvoice {

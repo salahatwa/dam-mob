@@ -8,11 +8,13 @@ import { CustomerService } from '@core/services/customer.service';
 import { DataService } from '@core/services/data.service';
 import { InvoiceService } from '@core/services/invoice.service';
 import { ProductService } from '@core/services/product.service';
+import { ModalController } from '@ionic/angular';
 import { CommonService } from '@shared/services/common.service';
 import { ToastService, ToastType } from '@shared/services/toast.service';
 import { UtilsService } from '@shared/services/utils.service';
 import { forkJoin } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { CustomerSelectDialogComponent } from '../../customers/customer-select-dialog/customer-select-dialog.page';
 
 // import * as moment from 'moment';
 
@@ -41,9 +43,10 @@ export class InvoiceFilterComponent {
   public statusTypes = [{ key: 'NEW', value: 'جديد', class: 'build-badge__status-indeterminate' }, { key: 'PAID', value: 'مدفوعة', class: 'build-badge__status-success' }, { key: 'RETURNS', value: 'مرتجع', class: 'build-badge__status-warning' }, { key: 'CANCELED', value: 'ألغيت', class: 'build-badge__status-error' }, { key: 'PAID_PARTIALLY', value: 'مدفوعة جزئيا', class: 'build-badge__status-information' }, { key: 'SAMPLE', value: 'عينات', class: 'build-badge__status-indeterminate' }]
 
 
-  constructor(public datepipe: DatePipe,private commonService: CommonService, private customerService: CustomerService, private productService: ProductService, private toastService: ToastService, private invoiceService: InvoiceService, private utilsService: UtilsService, private data: DataService, private router: Router) {
-    this.currentDate=this.datepipe.transform(new Date(), 'YYYY-MM-dd');
-   }
+  constructor(public datepipe: DatePipe, private commonService: CommonService, private customerService: CustomerService,private modalCtrl: ModalController, private productService: ProductService, private toastService: ToastService, private invoiceService: InvoiceService, private utilsService: UtilsService, private data: DataService, private router: Router) {
+    this.filter.fromDate = this.datepipe.transform(new Date(), 'YYYY-MM-dd');
+    this.filter.toDate = this.datepipe.transform(new Date(), 'YYYY-MM-dd');
+  }
 
 
   ionViewWillEnter() {
@@ -67,11 +70,11 @@ export class InvoiceFilterComponent {
 
   initData() {
 
-   
 
-   console.log(this.currentDate);
-  //  this.filter.fromDate=new Date(this.currentDate);
-  //  this.filter.toDate=new Date(this.currentDate);
+
+    console.log(this.currentDate);
+    //  this.filter.fromDate=new Date(this.currentDate);
+    //  this.filter.toDate=new Date(this.currentDate);
 
     this.commonService.showSpinner();
     forkJoin(
@@ -112,9 +115,27 @@ export class InvoiceFilterComponent {
     // });
   }
 
-  changePeriod(periodID){
+  changePeriod(periodID) {
     this.selectedPeriod = periodID;
   }
 
 
+  async openSearch() {
+    const modal = await this.modalCtrl.create({
+      component: CustomerSelectDialogComponent,
+      componentProps: {
+        title: "Customers",
+        customers: this.customers,
+      },
+    });
+
+    modal.present();
+
+    const { data } = await modal.onWillDismiss();
+
+    console.log(data);
+    this.filter.customer = data;
+    // this.order.symbol = data;
+    // this.applySymbol(this.order);
+  }
 }
