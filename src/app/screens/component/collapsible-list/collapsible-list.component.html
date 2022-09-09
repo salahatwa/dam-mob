@@ -40,26 +40,18 @@
 
     </ion-col>
     <ion-col  [hidden]="cardTextFive == null" [size]="colFiveSize || ''">
-      <div [hidden]="formName != 'home' && formName != 'mutualFund'" *ngIf="uncommafy(cardTextFive) > 0" class="changableValueTextGreen">
+      <div  *ngIf="uncommafy(cardTextFive) > 0" class="changableValueTextGreen">
         <div Class="">
-          {{cardTextFive}} <span *ngIf="formName == 'mutualFund'">%</span>
+          {{cardTextFive}} <span>$</span>
         </div>
       </div>
-      <div [hidden]="formName != 'home' && formName != 'mutualFund'" *ngIf="uncommafy(cardTextFive) < 0" class="changableValueTextRed" >
+      <div  *ngIf="uncommafy(cardTextFive) < 0" class="changableValueTextRed" >
         <div Class="">
-          {{cardTextFive}} <span *ngIf="formName == 'mutualFund'">%</span>
+          {{cardTextFive}} <span>$</span>
         </div>
       </div>
-      <div [hidden]="formName != 'home' && formName != 'mutualFund'" *ngIf="uncommafy(cardTextFive) == 0">
-        <div Class="">
-          {{cardTextFive}} <span *ngIf="formName == 'mutualFund'">%</span>
-        </div>
-      </div>
-      <div *ngIf="formName == 'outstanding' || formName =='MFOutstanding'" [ngClass]="boxColor">
-        <div Class="changableValueText" style="text-align: center;color:white;font-size: 9px;">
-          {{cardTextFive}}
-        </div>
-      </div>
+    
+    
     </ion-col>
     <ion-col [hidden]="arrow" [size]=".9">
       <ion-icon  name="chevron-down-outline" style="width: 25px;height: 17px;"></ion-icon>

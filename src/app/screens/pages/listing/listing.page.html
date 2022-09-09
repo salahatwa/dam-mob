@@ -2,44 +2,71 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      <div class="header">
-        <div class="avatar">
-          <ion-img src="assets\images\avatar-alt.png"></ion-img>
+      <ion-button (click)="switchLang()"><!-- (click)="openProfile()" -->
+        <div class="icon-link">
+          <span class="icon icon-user-profile"></span>
         </div>
-      </div> 
-    </ion-title>
-    <ion-buttons slot="end">
-      <app-cloud-sync></app-cloud-sync>
+      </ion-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <div class="icon-link">
+          <span class="icon icon-notification"></span>
+        </div>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      <div class="icon-link">
+        <span class="icon icon-alinma-symbol"></span>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid style="padding: 10px;">
+  <ion-grid>
     <ion-row class="criteria-container sticky-top">
-      <!-- -->
 
       <ion-col>
         <div class="categories">
-          <app-menu-item *ngFor="let item of menus" (clicked)="openMenu($event)" [item]="item"></app-menu-item>
+          <app-menu-item *ngFor="let item of menus" (clicked)="openMenu($event)" [item]="item">
+
+          </app-menu-item>
+
         </div>
       </ion-col>
 
     </ion-row>
 
 
-
-
-
-    <!-- <ion-router-outlet></ion-router-outlet> -->
-    <ion-row style="margin-top: 10px;">
+    <ion-row>
       <ion-grid class="standing-order-header">
-          <router-outlet name="dashboard"></router-outlet>
+        <router-outlet name="dashboard"></router-outlet>
       </ion-grid>
     </ion-row>
 
 
   </ion-grid>
+
+
+  <ion-fab  *ngIf="isActive('/home/listing/products')" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button id="actionBtn">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="light" (click)="createCustomer()">
+        <!-- <ion-icon name="user"></ion-icon> -->
+        <ion-img src="assets/icon/portfolios.svg"></ion-img>
+      </ion-fab-button>
+      <ion-fab-button color="light" (click)="createProduct()">
+        <!-- <ion-icon name="cash-outline"></ion-icon> -->
+        <ion-img src="assets/icon/products.svg"></ion-img>
+      </ion-fab-button>
+      <!-- <ion-fab-button color="light" (click)="createInvoice()">
+        <ion-icon name="timer-outline"></ion-icon>
+      </ion-fab-button> -->
+    </ion-fab-list>
+  </ion-fab> 
+
 </ion-content>

@@ -11,14 +11,6 @@ const routes: Routes = [
   
   },
 
-
-
-  // {
-  //   path: ':id',
-  //   component: CustomerDetailsComponent
-  // }
-  // , { path: '', redirectTo: 'list', pathMatch: 'full' },
-
 ]
 
 @NgModule({

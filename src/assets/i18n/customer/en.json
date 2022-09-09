@@ -1,0 +1,21 @@
+{
+    "customer": {
+        "label": "Customers",
+        "close": "Close"
+    },
+    "action": {
+        "label": "Actions",
+        "details": "View Details",
+        "delete": "Delete Customer",
+        "update": "Update Customer",
+        "cancel": "Cancel",
+        "loading": "Loading more customers.."
+    },
+    "msg": {
+        "confirm-delete": "Are you sure you want to remove customer?"
+    },
+    "btn": {
+        "yes": "Yes",
+        "no": "No"
+    }
+}

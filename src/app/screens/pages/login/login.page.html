@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -51,31 +51,9 @@
       >
     </div>
 
-    <!-- <div class="google text-center mt-4">
-      <ion-button  [disabled]="!f.valid" type="submit" size="large" color="danger" fill="outline">
-        Login &nbsp;
-      </ion-button>
-    </div> -->
-  </form>
-  <!-- <div class="px-2 mt-2">
-    <ion-item class="bg-dark">
-      <ion-label for="show">Show Password</ion-label>
-      <ion-checkbox
-        name="show"
-        id="show"
-        [(ngModel)]="showPassword"
-      ></ion-checkbox>
-    </ion-item>
-  </div> -->
-  <!-- <div class="ion-text-center mt-3">
-    <a routerLink="/signup" [replaceUrl]="true">
-      Don't have an account? Signin
-    </a>
-  </div> -->
   
-  <!-- <div class="mt-6 text-center">
-    <img src="assets/images/home-image.png" alt="" style="width: 90%" />
-  </div> -->
+  </form>
+ 
   <div class="errors mt-3 px-2" *ngIf="errorMessages">
     <ion-item color="danger">
       <ion-label text-wrap class="ion-text-center">
@@ -86,15 +64,51 @@
 </ion-content>
 <ion-footer>
   <ion-button expand="full" shape="round" size="large" (click)="onLogin()" [disabled]="!authForm.valid">Login</ion-button>
-  <!-- <ion-button
-    (click)="gLogin()"
-    expand="full"
-    shape="round"
-    size="large"
-    color="danger"
-    fill="outline"
-  >
-    Continue With Google&nbsp;
-    <ion-icon name="logo-google"></ion-icon>
-  </ion-button> -->
-</ion-footer>
+ 
+</ion-footer> -->
+
+<ion-content class="login-screen">
+  <div class="gradient-bg"></div>
+  <!-- <div id="overlay" [ngClass]="{fadeable: true, visible: loading}"></div> -->
+  <div class="login-content-wrapper animation" [ngClass]="containerClass">
+    <div class="form-wrapper">
+      <img src="assets/images/splash-logo.svg" class="logo-img" />
+
+      <form [formGroup]="form"  class="login-form">
+        <ion-item class="floating-input">
+          <ion-label position="floating">{{'common.username' | translate}}</ion-label>
+          <ion-input (ionFocus)="setKeyboardClass(true)" (ionBlur)="setKeyboardClass(false)" formControlName="username" name="username" (keyup)="preventSpaceInUserName(username)" [(ngModel)]="username" ngDefaultControl></ion-input>
+          <span class="icon icon-user" slot="start"></span>
+        </ion-item>
+        <ion-item class="floating-input">
+          <ion-label position="floating">{{'common.password' | translate}}</ion-label>
+          <ion-input (ionFocus)="setKeyboardClass(true)" (ionBlur)="setKeyboardClass(false)" formControlName="password" name="password" type="password" (keyup)="preventSpaceInPassword(password)" [(ngModel)]="password" ngDefaultControl></ion-input>
+          <span class="icon icon-lock" slot="start"></span>
+        </ion-item>
+
+        <ion-grid class="ion-padding">
+          <ion-row class="ion-justify-content-between ion-align-items-center">
+            <!-- <ion-col size="auto" class="ion-no-padding">
+              <ion-item class="remember-me">
+                <ion-checkbox [formControl]="form.controls.rememberMe" name="rememberMe" [(ngModel)]="rememberMe"></ion-checkbox>
+                <ion-label>{{'loginPage.REMEMBER_ME' | translate}}</ion-label>
+              </ion-item>
+            </ion-col> -->
+
+            <!-- <ion-col size="auto" class="ion-no-padding">
+              <ion-router-link class="underline" (click)="goToForgot()">{{'common.forgot-password' | translate}}</ion-router-link>
+            </ion-col> -->
+          </ion-row>
+        </ion-grid>
+        <ion-button   (click)="onLogin()" color="primary"  [disabled]="!form.valid" expand="block" fill="solid" class="ion-margin">{{'common.login' | translate}}</ion-button>
+        <!-- <in-button color="success" [(loading)]="loading" [disabled]="!form.valid" expand="block" fill="solid" type="submit" class="ion-margin">
+          {{ 'loginPage.LOGIN' | translate }}
+        </in-button> -->
+        <!-- <ion-router-link class="underline open-account-link ion-text-center" (click)="openCreateAccount()">{{'loginPage.OPEN_ACCOUNT' | translate}}</ion-router-link> -->
+      </form>
+    </div>
+    <div class="ion-padding ion-text-center switch-language">
+      <p (click)="changeLang()"><span class="icon icon-globe"></span> {{ appLang == 'ar' ? 'English' : 'عربي' }}</p>
+    </div>
+  </div>
+</ion-content>

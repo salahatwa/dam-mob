@@ -1,0 +1,74 @@
+:host {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+
+    body.dark & {
+        --ion-color-primary-txt: #AD93E3;
+    }
+
+    ion-menu {
+        pointer-events: all;
+    }
+    #header {
+        height: 160px;
+        background: #6b45bc;
+        color: white;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        body.dark & {
+            background: #1e1e1e !important;
+        }
+    }
+
+    #profile-photo {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+
+        svg {
+            transform: scale(0.9);
+        }
+    }
+
+    #name {
+        width: 224px;
+        height: 32px;
+        font-family: AlinmaTheSans;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: start;
+        color: var(--white);
+    }
+
+    #icon-container {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    ion-item {
+        --transition: none;
+        // --color       : #6b45bc;
+        --color: var(--ion-color-primary-txt);
+        --border-color: rgba(205, 223, 225, 0.5);
+    }
+
+    .no-outline {
+        outline: none;
+    }
+}
+
+ion-menu::part(container) {
+    // border-radius: 0 70px 0 0;
+    display: block !important;
+}

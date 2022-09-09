@@ -37,6 +37,11 @@ const routes: Routes = [
     loadChildren: () => import('./screens/pages/listing/listing.module').then(m => m.ListingPageModule),
   },
   {
+    path: 'overview',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./screens/pages/overview/overview.module').then(m => m.OverviewModule),
+  },
+  {
     path: 'customer-details',
     loadChildren: () =>
       import(`./screens/pages/listing/customers/customer-details/customer-details.module`).then((m) => m.CustomerDetailsModule),
@@ -72,6 +77,12 @@ const routes: Routes = [
     path: 'customer-opt',
     loadChildren: () =>
       import(`./screens/pages/listing/customers/customer-operation/customer-operations.module`).then((m) => m.CustomerOperationsModule),
+  },
+
+  {
+    path: 'product-opt',
+    loadChildren: () =>
+      import(`./screens/pages/listing/products/product-operation/product-operations.module`).then((m) => m.ProductOperationsModule),
   },
 
 

@@ -1,0 +1,8 @@
+{
+    "common":{
+        "username":"User Name",
+        "password":"Password",
+        "login":"Login",
+        "forgot-password":"Forgot Password"
+    }
+}

@@ -1,0 +1,79 @@
+<ion-content>
+  <div class="header">
+    <ion-buttons start>
+      <ion-button routerLink="/home/listing/products">
+        <ion-icon slot="icon-only" color='light' name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-title color='light'>{{ 'product.name' | translate }}</ion-title> -->
+    <ion-buttons end>
+      <ion-button>
+        <ion-icon slot="icon-only" color='light' name="ribbon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
+
+  <!-- <div class="title">
+    <p>{{ 'product.name' | translate }}</p>
+  </div> -->
+
+
+  <div class="card">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+      <ion-item class="floating-input">
+        <ion-label position="floating">{{'product.name' | translate}}</ion-label>
+        <ion-input formControlName="name" name="name" ngDefaultControl></ion-input>
+        <ion-icon name="ribbon" class="icon" slot="start"></ion-icon>
+        <ion-note color="danger" *ngIf="f.name.errors?.required && f.name.touched">Name is required</ion-note>
+        <ion-note color="danger" *ngIf="f.name.errors?.pattern&& f.name.touched">Invalid pattern</ion-note>
+      </ion-item>
+
+
+      <ion-item class="floating-input">
+        <ion-label position="floating">{{'product.location' | translate}}</ion-label>
+        <ion-input formControlName="location" name="location" ngDefaultControl></ion-input>
+        <ion-icon name="locate" class="icon" slot="start"></ion-icon>
+        <small class="text-danger" *ngIf="f.location.errors?.required && f.location.touched">Location is
+          required</small>
+        <small class="text-danger" *ngIf="f.location.errors?.pattern&& f.location.touched">Invalid pattern</small>
+      </ion-item>
+
+
+
+      <ion-item class="floating-input">
+        <ion-label position="floating">{{'product.price' | translate}}</ion-label>
+        <ion-input type="number" formControlName="price" name="price" ngDefaultControl></ion-input>
+        <ion-icon name="logo-usd" class="icon" slot="start"></ion-icon>
+        <small class="text-danger" *ngIf="f.price.errors?.required && f.price.touched">Price is required</small>
+        <small class="text-danger" *ngIf="f.price.errors?.pattern&& f.price.touched">Invalid pattern</small>
+      </ion-item>
+
+
+      <ion-item class="floating-input">
+        <ion-label position="floating">{{'product.quantity' | translate}}</ion-label>
+        <ion-input type="number" formControlName="quantity" name="quantity" ngDefaultControl></ion-input>
+        <ion-icon name="pricetag" class="icon" slot="start"></ion-icon>
+        <small class="text-danger" *ngIf="f.quantity.errors?.required && f.quantity.touched">Quantity is
+          required</small>
+        <small class="text-danger" *ngIf="f.quantity.errors?.pattern&& f.quantity.touched">Invalid pattern</small>
+      </ion-item>
+
+
+
+      <ion-item class="floating-input">
+        <ion-label position="floating">{{'product.code' | translate}}</ion-label>
+        <ion-input formControlName="code" name="code" ngDefaultControl></ion-input>
+        <ion-icon name="barcode" class="icon" slot="start"></ion-icon>
+        <small class="text-danger" *ngIf="f.code.errors?.required && f.code.touched">Code is required</small>
+        <small class="text-danger" *ngIf="f.code.errors?.pattern&& f.code.touched">Invalid pattern</small>
+      </ion-item>
+
+
+      <ion-button (click)="onSubmit()" color="primary" [disabled]="!productForm.valid" expand="block" fill="solid"
+        class="ion-margin">{{ ( (product&&product?.id) ? 'product.update' : 'product.add') | translate}}
+      </ion-button>
+
+    </form>
+  </div>
+</ion-content>

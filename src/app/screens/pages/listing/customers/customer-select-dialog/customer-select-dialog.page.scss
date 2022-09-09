@@ -1,0 +1,53 @@
+ion-toolbar {
+    --color: white;
+    --background: #6b45bc;
+
+    ion-searchbar {
+        --color: #6b45bc;
+        --icon-color: #6b45bc;
+        --background: #e6eff0;
+        --border-radius: 0;
+        body.dark :host & {
+            --color: white;
+            --icon-color: white;
+            border: 1px solid white;
+            height: 36px;
+            padding-top: 10px;
+          }
+    }
+
+    #close-button {
+        --color: #e6eff0;
+        font-size: 100%;
+    }
+}
+.searchbar-input{
+    border: 1px solid white;
+}
+
+
+.symbol-id {
+    font-weight: normal;
+    border: 1px solid #e6eff0;
+    padding: 0 2px;
+    width: 36px;
+    font-weight: bold;
+    text-align: center;
+}
+
+:host {
+    ion-item {
+        --color: #6b45bc;
+
+        body.dark & {
+            --color: #a5a5a5;
+        }
+
+        font-size: 12px;
+        --border-color: transparent;
+    }
+}
+
+.search-name {
+    margin-inline-start: 8px;
+}

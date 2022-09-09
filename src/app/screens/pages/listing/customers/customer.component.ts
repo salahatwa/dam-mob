@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { Customer } from '@core/models/customer';
 import { CustomerService } from '@core/services/customer.service';
 import { ActionSheetController, AlertController, IonInfiniteScroll, ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { CommonService } from '@shared/services/common.service';
 import { ToastService, ToastType } from '@shared/services/toast.service';
 import { UtilsService } from '@shared/services/utils.service';
 import { finalize } from 'rxjs/operators';
-import { CustomerFilterDialogComponent } from './customer-filter-dialog/customer-filter-dialog.component';
+import { CustomerSelectDialogComponent } from './customer-select-dialog/customer-select-dialog.page';
 
 
 // Typescript custom enum for search types (optional)
@@ -37,7 +38,9 @@ export class CustomerComponent implements OnInit {
    * Constructor of our first page
    * @param movieService The movie Service to get data
    */
-  constructor(private customerService: CustomerService, private common: CommonService, private router: Router, private utilsService: UtilsService, private modalCtrl: ModalController, private actionSheetController: ActionSheetController, private toastService: ToastService, private alertController: AlertController) { }
+  constructor(private translateService: TranslateService, private toastService: ToastService, private customerService: CustomerService, private common: CommonService, private router: Router, private utilsService: UtilsService, private modalCtrl: ModalController, private actionSheetController: ActionSheetController, private alertController: AlertController) {
+
+  }
 
   ngOnInit() {
     this.getItems(null);
@@ -47,6 +50,10 @@ export class CustomerComponent implements OnInit {
 
   getItems(event) {
     this.common.showSpinner();
+
+    if (!event || event == null)
+      this.page_number = 1;
+
     this.customerService.getCustomers(this.utilsService.getRequestParams(this.page_number, 10, 'createdAt')).pipe(finalize(() => {
       this.common.hideSpinner();
     })).subscribe(item => {
@@ -64,7 +71,7 @@ export class CustomerComponent implements OnInit {
 
   async openModal() {
     const modal = await this.modalCtrl.create({
-      component: CustomerFilterDialogComponent,
+      component: CustomerSelectDialogComponent,
     });
     modal.present();
 
@@ -78,10 +85,10 @@ export class CustomerComponent implements OnInit {
 
   async presentItemSheet(id) {
     const actionSheet = await this.actionSheetController.create({
-      header: 'Actions',
+      header: this.translateService.instant('action.label'),
       cssClass: 'sheet-class',
       buttons: [{
-        text: 'Details',
+        text: this.translateService.instant('action.details'),
         role: 'selected',
         icon: 'eye',
         id: 'details-button',
@@ -90,30 +97,22 @@ export class CustomerComponent implements OnInit {
           this.router.navigate(['customer-details', id]);
         }
       }, {
-        text: 'Update',
+        text: this.translateService.instant('action.update'),
         icon: 'create',
         data: id,
         handler: () => {
           this.router.navigate(['customer-opt', id]);
         }
       }, {
-        text: 'Delete',
+        text: this.translateService.instant('action.delete'),
         icon: 'trash',
         data: id,
         handler: () => {
           this.removeItem(id);
         }
       },
-      // {
-      //   text: 'Favorite',
-      //   icon: 'heart',
-      //   handler: () => {
-      //     console.log('Favorite clicked');
-      //   }
-      // }
-      // ,
       {
-        text: 'Cancel',
+        text: this.translateService.instant('action.cancel'),
         icon: 'close',
         role: 'cancel',
         handler: () => {
@@ -135,6 +134,7 @@ export class CustomerComponent implements OnInit {
     })).subscribe(data => {
       this.toastService.showToast('Success Delete', ToastType.SUCCESS);
       this.customers = [];
+
       this.getItems(null);
     }, err => {
       this.toastService.showToast(err.message, ToastType.DANGER);
@@ -144,15 +144,15 @@ export class CustomerComponent implements OnInit {
 
   async removeItem(id) {
     const alert = await this.alertController.create({
-      header: 'Remove',
-      message: 'Are you sure you want to remove?',
+      header: this.translateService.instant('action.delete'),
+      message: this.translateService.instant('msg.confirm-delete'),
       buttons: [
         {
-          text: 'Yes',
+          text: this.translateService.instant('btn.yes'),
           handler: () => this.deleteCustomer(id),
         },
         {
-          text: 'No',
+          text: this.translateService.instant('btn.no'),
         }
       ]
     });

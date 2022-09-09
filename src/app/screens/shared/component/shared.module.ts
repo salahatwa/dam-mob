@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { TruncatePipe } from '../pipes/turncate.pipe';
 import { BadgeComponent } from './badge/badge.component';
 import { ButtonComponent } from './button/button.component';
 import { CloudSyncComponent } from './cloud-sync/cloud-sync.component';
@@ -14,15 +15,14 @@ import { MonthChooseComponent } from './month-choose/month-choose.component';
     CloudSyncComponent,
     MonthChooseComponent,
     BadgeComponent,
-    ButtonComponent
+    ButtonComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-
-
   ],
   exports: [
     CommonModule,
@@ -33,6 +33,8 @@ import { MonthChooseComponent } from './month-choose/month-choose.component';
     MonthChooseComponent,
     BadgeComponent,
     ButtonComponent,
-  ]
+    TruncatePipe
+  ],
+  providers:[DatePipe]
 })
 export class SharedModule { }

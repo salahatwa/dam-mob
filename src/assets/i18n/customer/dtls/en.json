@@ -1,0 +1,10 @@
+{
+    "customer": {
+        "name": "Name",
+        "email": "Email",
+        "address": "Address",
+        "city":"City",
+        "phone":"Phone",
+        "dtls": "Details"
+    }
+}

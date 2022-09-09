@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-title>{{ 'customer.label' | translate }}</ion-title>
+          <ion-buttons end>
+            <ion-button (click)="dismiss()" id='close-button'>{{ 'customer.close' | translate }}</ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        <ion-searchbar [(ngModel)]="queryText" (ngModelChange)="filter()" [placeholder]="'customer.filter' | translate">
+        </ion-searchbar>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item (click)="select(customer)" *ngFor="let customer of results">
+      <span class="customer-id"> {{ customer?.id }} </span>
+      <span class="search-name">
+        {{ customer?.name }}
+      </span>
+    </ion-item>
+  </ion-list>
+</ion-content>

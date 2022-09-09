@@ -14,10 +14,12 @@ export class HomePage implements OnInit {
   constructor(
     private platform: Platform,
     private routerOutlet: IonRouterOutlet,
-    private translateService: TranslateService
+    private translate: TranslateService
   ) {
-    this.translateService.setDefaultLang('ar');
-    // this.translateService.use('ar');
+
+    this.translate.use(this.translate.store.currentLang);
+
+
     this.platform.backButton.subscribeWithPriority(11, () => {
       if (!this.routerOutlet.canGoBack()) {
         App.exitApp();

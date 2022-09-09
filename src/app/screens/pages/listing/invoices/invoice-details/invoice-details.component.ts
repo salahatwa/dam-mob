@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IInvoice, ItemInvoice } from '@core/models/invoice';
 import { User } from '@core/models/user.model';
 import { InvoiceService } from '@core/services/invoice.service';
-import { ToastController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '@shared/services/auth/user.service';
 import { CommonService } from '@shared/services/common.service';
+import { FileService } from '@shared/services/file.service';
 import { ToastService, ToastType } from '@shared/services/toast.service';
 import { Observable, Observer } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { InvoiceStatusControllerService } from '../invoice-status/invoice-status-controller.service';
 @Component({
   selector: 'app-invoice-details',
   templateUrl: './invoice-details.component.html',
@@ -21,10 +24,8 @@ export class InvoiceDetailsComponent implements OnInit {
 
   base64ImageString;
 
-  constructor(private toastCtrl: ToastController, private activatedRoute: ActivatedRoute, private common: CommonService, private invoiceService: InvoiceService, private userService: UserService, private toastService: ToastService) {
+  constructor(private translateService:TranslateService,private invoiceControllerService: InvoiceStatusControllerService, private router: Router, private activatedRoute: ActivatedRoute, private common: CommonService, private invoiceService: InvoiceService, private userService: UserService, private toastService: ToastService, private alertController: AlertController, private actionSheetController: ActionSheetController) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
   }
 
   ngOnInit() {
@@ -151,6 +152,105 @@ export class InvoiceDetailsComponent implements OnInit {
       }
 
     }
+  }
+
+
+
+  async presentItemSheet(invoice: IInvoice) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Actions',
+      cssClass: 'sheet-class',
+      buttons: [
+        {
+          text: 'Print',
+          icon: 'create',
+          data: invoice?.id,
+          handler: () => {
+            this.downloadPDF(invoice?.id);
+            // this.router.navigate(['customer-opt', id]);
+          }
+        }, {
+          text: 'Delete',
+          icon: 'trash',
+          data: invoice?.id,
+          handler: () => {
+            this.removeItem(invoice?.id);
+          }
+        },
+        {
+          text: 'Change Status',
+          icon: 'heart',
+          handler: () => {
+            this.invoiceControllerService.openChangeStatusDialog(invoice);
+          }
+        }
+        ,
+        {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }]
+    });
+    await actionSheet.present();
+
+    const { role, data } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role and data', role, data);
+  }
+
+
+
+  public downloadPDF(id): void {
+    this.common.showSpinner();
+    this.invoiceService.downloadInvoice(id).pipe(finalize(() => {
+      this.common.hideSpinner();
+    })).subscribe(data => {
+      // this.fileService.openBlobFile(data, "application/pdf","invoice");
+
+      const blob = new Blob([data], { type: "application/pdf" });
+      FileService.writeAndOpenFile(blob, "invoice.pdf");
+    }, err => {
+      this.toastService.showToast(err.message, ToastType.DANGER);
+    });
+
+  }
+
+
+
+
+
+  deleteInvoice(id) {
+    this.common.showSpinner();
+    this.invoiceService.deleteInvoice(id).pipe(finalize(() => {
+      this.common.hideSpinner();
+    })).subscribe(data => {
+      this.toastService.showToast('Success Delete', ToastType.SUCCESS);
+      this.router.navigate(['/home/listing/invoices']);
+
+    }, err => {
+      this.toastService.showToast(err.message, ToastType.DANGER);
+    });
+  }
+
+
+  async removeItem(id) {
+    const alert = await this.alertController.create({
+      header: 'Remove',
+      message: 'Are you sure you want to remove?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => this.deleteInvoice(id),
+        },
+        {
+          text: 'No',
+        }
+      ]
+    });
+
+    alert.present();
   }
 
 }

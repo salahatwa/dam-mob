@@ -1,0 +1,94 @@
+<ion-card class="cart-item">
+  <ion-card-header>
+
+
+    <div style="display: flex; justify-content: space-between;">
+      <span>
+        <ion-card-title class="title">
+          {{_item.product.name}}
+        </ion-card-title>
+        <ion-card-subtitle class="title">{{ 'invoice.price' | translate }}:<sup>$</sup>{{_item.product.price|number:'1.2'}}</ion-card-subtitle>
+        <ion-card-subtitle class="title">{{ 'invoice.available-qty'|
+          translate}}:<sup>$</sup>{{_item.product.availableQuantity - (_item.quantity+_item.bonus)}}</ion-card-subtitle>
+      </span>
+      <span class="title">
+        {{ 'invoice.total' | translate }}:<sup>$</sup>{{totalAmount$|async|number:'1.2'}}
+      </span>
+    </div>
+
+  </ion-card-header>
+  <ion-card-content>
+
+    <form class="form" #form="ngForm" novalidate>
+      <table>
+        <tr>
+          <td>
+            <ion-label>{{ 'invoice.qty' | translate }}</ion-label>
+          </td>
+          <td>
+            <div>
+              <ion-item color='#6b45bc'>
+                <ion-icon name="add-circle" (click)="onIncreaseQty()" item-right></ion-icon>
+
+
+                <!--  -->
+                <ion-input type="number" name="quantity" #quantity="ngModel" [(ngModel)]="_item.quantity"
+                  (ngModelChange)="changeItem(_item)" [minValidator]="1"
+                  [maxValidator]="_item?.product?.availableQuantity">
+                </ion-input>
+                <ion-icon name="remove-circle" (click)="onDecreaseQty()" item-right></ion-icon>
+              </ion-item>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>{{ 'invoice.bonus' | translate }}</td>
+          <td>
+            <div>
+              <ion-item color='#6b45bc'>
+                <ion-icon name="add-circle" (click)="onIncreaseBonus()" item-right></ion-icon>
+                <ion-input type="number" name="bonus" #bonus="ngModel" [(ngModel)]="_item.bonus"
+                  (ngModelChange)="changeItem(_item)" [minValidator]="0">
+                </ion-input>
+                <ion-icon name="remove-circle" (click)="onDecreaseBonus()" item-right></ion-icon>
+              </ion-item>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>{{ 'invoice.discount' | translate }}</td>
+          <td>
+            <div>
+              <ion-item color='#6b45bc'>
+                <ion-icon name="add-circle" (click)="onIncreaseDiscount()" item-right></ion-icon>
+                <ion-input type="number" name="discount" #discount="ngModel" [(ngModel)]="_item.discount"
+                  (ngModelChange)="changeItem(_item)" [minValidator]="0" [maxValidator]="100">
+                </ion-input>
+                <ion-icon name="remove-circle" (click)="onDecreaseDiscount()" item-right></ion-icon>
+              </ion-item>
+            </div>
+          </td>
+        </tr>
+
+      </table>
+
+    </form>
+
+
+    <ion-note color="danger" *ngIf="(quantity?.touched || form.submitted) && quantity?.errors?.min">Quantity can't be
+      less than {{quantity.errors?.minValue}}</ion-note>
+    <ion-note color="danger" *ngIf="(quantity?.touched || form.submitted) && quantity?.errors?.max">Quantity can't be
+      More than {{quantity.errors?.maxValue}}</ion-note>
+
+    <ion-note color="danger" *ngIf="(bonus?.touched || form.submitted) && bonus?.errors?.min">Bonus can't be less than
+      {{bonus.errors?.minValue}}</ion-note>
+    <ion-note color="danger" *ngIf="(discount?.touched || form.submitted) && discount?.errors?.min">Discount can't be
+      less than {{discount.errors?.minValue}}</ion-note>
+    <ion-note color="danger" *ngIf="(discount?.touched || form.submitted) && discount?.errors?.max">Discount can't be
+      More than {{discount.errors?.maxValue}}</ion-note>
+
+
+  </ion-card-content>
+
+</ion-card>

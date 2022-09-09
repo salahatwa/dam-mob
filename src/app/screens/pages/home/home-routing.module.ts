@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('./../../pages/account/account.module').then(m => m.AccountPageModule)
       },
       {
+        path: 'overview',
+        loadChildren: () => import('./../../pages/overview/overview.module').then(m => m.OverviewModule)
+      },
+      {
         path: '',
         redirectTo: 'listing',
         pathMatch: 'full'

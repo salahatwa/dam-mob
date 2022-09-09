@@ -28,9 +28,9 @@ export class UserService {
 
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
-  populate() {
+ async  populate() {
     // If JWT detected, attempt to get & store user's info
-    if (this.jwtService.getToken()) {
+    if (await this.jwtService.getToken()) {
       this.apiService.get('/auth/me')
         .subscribe(
           data => this.setAuth(data),

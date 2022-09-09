@@ -3,20 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { CartPageRoutingModule } from './cart-routing.module';
 
-import { CartItemModule } from '../../component/cart-item/cart-item.module';
 import { SharedModule } from '../../shared/component/shared.module';
+import { ValidatorsModule } from '../../shared/validators/validators.module';
+import { CustomerSelectDialogsModule } from '../listing/customers/customer-select-dialog/customer-select-dialog.module';
+import { CartItemComponent } from './cart-item/cart-item.component';
 import { CartPage } from './cart.page';
-import { SearchPage } from '../listing/customers/search/search.page';
-import { SearchPageModule } from '../listing/customers/search/search.module';
+import { CartTranslationModule } from './cart.translation.module';
+
 
 @NgModule({
   imports: [
     SharedModule,
     CartPageRoutingModule,
-    CartItemModule,
-    SearchPageModule
+    ValidatorsModule,
+    CustomerSelectDialogsModule,
+    CartTranslationModule
   ],
-  declarations: [CartPage],
-  // entryComponents:[SearchPage]
+  declarations: [CartPage, CartItemComponent],
+  exports: [SharedModule, ValidatorsModule],
 })
 export class CartPageModule { }

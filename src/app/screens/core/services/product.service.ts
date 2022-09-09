@@ -67,10 +67,8 @@ export class ProductService {
     }));
   }
 
-  deleteProduct(product: Product) {
-    return this.apiService.delete('/product/' + product.id).pipe(map(data => {
-      product.action = 'Delete';
-      this.messageSource.next(product);
+  deleteProduct(id) {
+    return this.apiService.delete('/product/' + id).pipe(map(data => {
       return data;
     }));
   }

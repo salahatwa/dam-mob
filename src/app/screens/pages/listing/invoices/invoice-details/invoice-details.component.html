@@ -1,7 +1,9 @@
-<!-- <ion-content>
+
+
+<ion-content>
   <div class="header">
     <ion-buttons>
-      <ion-button routerLink="/home/listing/customers">
+      <ion-button routerLink="/home/listing/invoices">
         <ion-icon slot="icon-only" color='light' name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -15,296 +17,101 @@
 
 
   <div class="card">
-    <div class="image">
-      <ion-img [src]="customer?.image?customer.image:'assets/images/avatar-alt.png'"></ion-img>
-    </div>
-
-    <div class="card-content">
-      <div class="card-title">
-        <h1 class="ion-no-margin">{{customer?.name}}</h1>
-        <p class="ion-no-margin"><sup>$</sup>{{customer?.phone}}</p>
-      </div>
-    </div>
-
-    <div class="rates">
-      <app-badge icon="d-time-forward" text="30m"></app-badge>
-      <app-badge icon="star-outline" text="4.5"></app-badge>
-    </div>
-
-
-    <div class="about">
-      <h1>About</h1>
-      <p>{{customer?.address}}</p>
-      <p>{{customer?.email}}</p>
-    </div>
-
-    <app-button (click)="addItemToCart()">Add To Cart</app-button>
-  </div>
-</ion-content> -->
+ 
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4>{{ 'invoice.id' | translate}}</ion-col>
+            <ion-col col-8>{{invoice?.id}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-4>{{ 'invoice.dt' | translate}}</ion-col>
+            <ion-col col-8>{{invoice?.createdAt | date: "dd-MM-yyyy"}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-4>{{ 'invoice.customer' | translate}}</ion-col>
+            <ion-col col-8>{{invoice?.customer?.name}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-4>{{ 'invoice.address' | translate}}</ion-col>
+            <ion-col col-8>{{invoice?.customer?.address}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
 
 
-
-
-<!-- invoice dtls-->
-
-<!-- <div id="invoice">
-  <div class="invoice overflow-auto">
-    <div style="min-width: 600px">
-      <header>
-        <div class="row">
-          <div class="col">
-            <img src="{{ base64ImageString }}" width="100" height="100" data-holder-rendered="true" />
-          </div>
-          <div class="col company-details">
-            <h2 class="name">
-              {{ currentUser?.companyName }}
-            </h2>
-            <div>{{ currentUser?.address }}</div>
-            <div>{{ currentUser?.phone }}</div>
-            <div>{{ currentUser?.email }}</div>
-          </div>
-        </div>
-      </header>
-      <main>
-        <div class="row contacts">
-          <div class="col invoice-to">
-            <div class="text-gray-light">: المفوتر</div>
-            <h2 class="to">{{ invoice?.customer?.name }}</h2>
-            <div class="address">{{ invoice?.customer?.address }}</div>
-            <div class="address">{{ invoice?.customer?.state }}</div>
-            <div *ngIf="invoice?.customer?.email" class="email">
-              <a href="mailto:john@example.com">{{
-                invoice?.customer?.email
-                }}</a>
-            </div>
-          </div>
-          <div class="col invoice-details">
-            <h1 class="invoice-id">{{ invoice?.id }} : فاتورة رقم</h1>
-            <div class="date">
-              {{ invoice?.createdAt | date: "dd-MM-yyyy" }} : تاريخ الفاتورة
-            </div>
-            <div class="date">------------- : تاريخ الدفع</div>
-          </div>
-        </div>
-        <table border="0" cellspacing="0" cellpadding="0">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th class="text-left">المنتج</th>
-              <th class="text-right">السعر</th>
-              <th class="text-right">الكمية</th>
-              <th class="text-right">الخصم</th>
-              <th class="text-right">المجموع</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of invoice?.items; let i = index">
-              <td class="no">{{ i + 1 }}</td>
-              <td class="text-left">
-                <h3>
-                  {{ item?.product?.name }}
-                </h3>
-              </td>
-              <td class="unit">{{ item?.product?.price }}</td>
-              <td class="qty">{{ item?.quantity }}</td>
-              <td class="unit">{{ item?.discount }}</td>
-              <td class="total">{{ itemTotalAfterDiscount(item) }}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="2"></td>
-              <td colspan="3">المجموع الفرعي</td>
-              <td>{{ itemSubtotal(invoice) }}</td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-              <td colspan="3">ضريبة</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td colspan="2"></td>
-              <td colspan="3">المجموع الإجمالي</td>
-              <td>{{ itemSubtotal(invoice) }}</td>
-            </tr>
-          </tfoot>
-        </table>
-        <div class="notices">
-          <div>ملحوظة</div>
-          <div class="notice">
-            <li>إجمالي الدفعة المستحقة خلال 30 يومًا</li>
-            <li>يرجى تضمين رقم الفاتورة على الشيك الخاص بك</li>
-          </div>
-        </div>
-
-        <div class="signaturetitle">الإعتماد والختم</div>
-        <div id="signature"></div>
-
-        <div id="signature">_____________</div>
-      </main>
-    </div>
-  </div>
-</div> -->
-
-
-
-<!-- <ion-header>
-
-  <ion-navbar>
-    <ion-row>
-    <ion-title col-9 >Bill Details</ion-title>
-    <ion-icon col-3 name='cart'><ion-badge >{{count}}</ion-badge></ion-icon>
-  </ion-row>
-    
-  </ion-navbar>
-
-</ion-header> -->
-
-<div class="header">
-  <ion-buttons>
-    <ion-button routerLink="/home/listing/invoices">
-      <ion-icon slot="icon-only" color='light' name="arrow-back"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-
-  <ion-buttons>
-    <ion-button>
-      <ion-icon slot="icon-only" color='light' name="d-heart"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-</div>
-
-<ion-content padding>
-  <!-- <input type="text" list="products" name="browser"> -->
-  <datalist id="products">
-    <option *ngFor="let item of invoice?.items" [value]="item?.product?.name">
-
-  </datalist>
-  <!-- <ul>
-    <li *ngFor="let product of currentProducts">{{product.productName}}</li>
-  </ul> -->
-
-  <ion-card>
-    <!-- <ion-card-header>
-      Header
-    </ion-card-header> -->
     <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-8>Bill.No: {{invoice?.id}}</ion-col>
-          <ion-col col-4>{{invoice?.createdAt | date: "dd-MM-yyyy"}}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-8>{{invoice?.customer?.name}}</ion-col>
-          <ion-col col-4>{{invoice?.customer?.address}}</ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+      <ion-row class="gridHeaderClass" size="12">
+        <ion-col style="text-align: start;" size="2.1">
+          <ion-label>{{ 'invoice.s-n' | translate}}</ion-label>
+        </ion-col>
+        <ion-col style="text-align: center;" size="2.5">
+          <ion-label>{{ 'invoice.product' | translate}}</ion-label>
+        </ion-col>
+    
+        <ion-col style="text-align: center;" size="2.1">
+          <ion-label>{{ 'invoice.qty' | translate}}</ion-label>
+        </ion-col>
 
-  <!-- <ion-content text-center style="background-color:#ddd">
-    <ion-item color="gray">
-      <ion-row text-center nowrap>
-        <ion-col col-8>S.No</ion-col>
-        <ion-col col-10>Name</ion-col>
-        <ion-col col-10>Price</ion-col>
-        <ion-col col-10>Quantity</ion-col>
-        <ion-col col-4>Discount</ion-col>
-        <ion-col col-16>Total</ion-col>
+        <ion-col style="text-align: center;" size="2.1">
+          <ion-label>{{ 'invoice.discount' | translate}}</ion-label>
+        </ion-col>
+
+        <ion-col style="text-align: center;" size="2.1">
+          <ion-label>{{ 'invoice.total' | translate}}</ion-label>
+        </ion-col>
       </ion-row>
-    </ion-item>
-    <ion-item color="primary" style="width:400vw" *ngFor="let item of invoice?.items; index as i">
-      <ion-row text-center nowrap>
-        <ion-col col-8>{{i + 1}}</ion-col>
-        <ion-col col-10 text-wrap>{{item?.product?.name}}</ion-col>
-        <ion-col col-10>{{item?.product?.price}}</ion-col>
-        <ion-col col-10>{{item?.quantity}}</ion-col>
-        <ion-col col-4>{{item?.discount}}</ion-col>
-        <ion-col col-16>{{itemTotalAfterDiscount(item)}}</ion-col>
-      </ion-row>
-    </ion-item>
-  </ion-content> -->
+  
+      <!-- |number:'1.0-2' -->
+  
+      <div class="investment-funds-segment" class="collaps-border">
+        <div *ngFor="let item of invoice?.items; index as i">
+          <div>
+            <dam-collapsible-list [cardTextOne]="i + 1+''" [cardTextTwo]="item?.product?.name"
+              [cardTextThree]="item?.quantity" [cardTextFour]="item?.discount +'%'" [cardTextFive]="itemTotalAfterDiscount(item)" [colOneSize]="2.1"
+              [colTwoSize]="2.5" [colThreeSize]="2.1" [colFourSize]="2.1" [arrow]="false" [expand]="item.expanded"
+              (collabseClick)="collapsSymbole(item,invoice?.items)"
+              [rowClass]="(i % 2 == 0) ? 'odd' : 'even'">
 
-  <ion-card-content>
-    <ion-row class="gridHeaderClass" size="12">
-      <ion-col style="text-align: start;" size="3.8">
-        <ion-label>S.No</ion-label>
-      </ion-col>
-      <ion-col style="text-align: center;" size="2.3">
-        <ion-label>Name</ion-label>
-      </ion-col>
-      <ion-col style="text-align: center;" size="2.5">
-        <ion-label>Price</ion-label>
-      </ion-col>
-      <ion-col style="text-align: center;" size="2.1">
-        <ion-label>Qty</ion-label>
-      </ion-col>
-    </ion-row>
-
-
-    <div class="investment-funds-segment" class="collaps-border">
-      <div *ngFor="let item of invoice?.items; index as i">
-        <div>
-          <dam-collapsible-list [cardTextOne]="i + 1+''" [cardTextTwo]="item?.product?.name"
-            [cardTextThree]="item?.product?.price|number:'1.0-2'" [cardTextFive]="item?.quantity" [colOneSize]="3.8"
-            [colTwoSize]="2.3" [colThreeSize]="2.5" [colFiveSize]="2.1" [arrow]="false" [expand]="item.expanded"
-            (collabseClick)="collapsSymbole(item,invoice?.items)" formName="mutualFund"
-            [rowClass]="(i % 2 == 0) ? 'odd' : 'even'">
-            <dam-stock-quick-view headerFirstText="Discount" headerSecondText="Total" headerThirdText="Price"
-              headerFourthText="Quantity" [headerFirstValue]="item?.discount" [headerSecondValue]="itemTotalAfterDiscount(item)"
-              [headerThirdValue]="item?.product?.price" [headerFourthValue]="item?.quantity+''" firstBtnText="BTN1"
+              <dam-stock-quick-view [headerFirstText]="'invoice.price' | translate" [headerSecondText]="'invoice.av-qty' | translate" 
+                 [headerFirstValue]="item?.product?.price |number:'1.0-2'" [headerSecondValue]="item?.product?.availableQuantity"
+              >
+              <!-- firstBtnText="BTN1"
               secondBtnText="BTN2" thirdBtnText="BTN3" firstBtnColor="stockButtonGreen"
               secondBtnColor="stockButtonPurple" thirdBtnColor="stockButtonTransparent"
-              fourthBtnColor="stockButtonTransparent">
-
-              <!-- (firstBtnClick)="openSubscription(item)"
-            (secondBtnClick)="openReports(item)"
-            (thirdBtnClick)="openDetails(item)" -->
-            </dam-stock-quick-view>
-          </dam-collapsible-list>
+              fourthBtnColor="stockButtonTransparent" -->
+  
+             
+              </dam-stock-quick-view>
+            </dam-collapsible-list>
+          </div>
         </div>
       </div>
-    </div>
+  
+    </ion-card-content>
+  
+    <ion-card>
+     
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>{{ 'invoice.total' | translate}} <sup>$</sup> {{itemSubtotal(invoice)|number:'1.2'}} </ion-col>
+        
+  
+        </ion-row>
+  
+      </ion-grid>
+     
+  
+    </ion-card>
+  
 
-  </ion-card-content>
-
-  <ion-card>
-    <!-- <ion-card-content> -->
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6>Total : {{itemSubtotal(invoice)}}</ion-col>
-        <!-- <ion-col col-6>GST ({{gst}}%) : {{gstValue}}</ion-col> -->
-
-      </ion-row>
-
-    </ion-grid>
-    <!-- </ion-card-content> -->
-
-  </ion-card>
-
-
-
-
+  </div>
 </ion-content>
-<!-- <ion-footer>
-
-
-  <button ion-button full color="primary" (click)="addAnItem()">Add an Item</button>
-  <ion-toolbar>
-
-    <ion-col col-12 style="text-align:center">
-      <ion-title> TOTAL : {{grandTotal}}</ion-title>
-    </ion-col>
 
 
 
-  </ion-toolbar>
-  <ion-fab left bottom>
-    <button ion-fab color="danger" (click)="reset()">
-      <ion-icon name="refresh"></ion-icon>
-    </button>
-
-  </ion-fab>
-
-
-</ion-footer> -->
+<ion-footer>
+  <ion-button (click)="presentItemSheet(invoice)" shape="round" fill="solid" expand="block" color="primary" class="mb-1 mx-1"  class="ion-margin">{{ 'invoice.action' | translate }}</ion-button>
+</ion-footer>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+    <g fill="none" fill-rule="evenodd" stroke="#6b45bc" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 15.5h-2c-1.105 0-2-.895-2-2v-11c0-1.105.895-2 2-2h18c1.105 0 2 .895 2 2v11c0 1.105-.895 2-2 2h-2" transform="translate(3 3)"/>
+        <path d="M2.5 2.5l7.77 5.611c.741.536 1.719.536 2.46 0L20.5 2.5M2.5 13.5L7.5 8.5M20.5 13.5L15.5 8.5M14.977 20.094c-.9.87-2.125 1.406-3.477 1.406-2.761 0-5-2.238-5-5 0-2.76 2.239-5 5-5 2.762 0 5 2.24 5 5" transform="translate(3 3)"/>
+        <path d="M9.5 16.5c0-1.105.895-2 2-2 1.104 0 2 .895 2 2 0 1.104-.896 2-2 2-1.105 0-2-.896-2-2h0zM16.5 16.5c0 .828-.094 2-1.5 2-1.25 0-1.5-1.172-1.5-2" transform="translate(3 3)"/>
+    </g>
+</svg>

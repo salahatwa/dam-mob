@@ -39,9 +39,9 @@
     <ion-row style="margin-top: 10px;">
       <ion-grid class="standing-order-header">
         
-          <ion-list>
+          <!-- <ion-list>
 
-            <!-- (click)="presentItemSheet(item.id)" -->
+           
 
             <ion-item button *ngFor="let item of invoices">
               <ion-avatar slot="start">
@@ -53,9 +53,7 @@
                 {{ item.totalPrice }}
               </ion-label>
 
-              <!-- <ion-icon slot="end" *ngIf="item.Type == 'movie'" name="videocam"></ion-icon>
-              <ion-icon slot="end" *ngIf="item.Type == 'series'" name="tv"></ion-icon>
-              <ion-icon slot="end" *ngIf="item.Type == 'game'" name="logo-game-controller-b"></ion-icon> -->
+          
 
             </ion-item>
 
@@ -65,7 +63,9 @@
             </ion-infinite-scroll>
 
 
-          </ion-list>
+          </ion-list> -->
+          <dam-invoice-list [filter]="filter"></dam-invoice-list>
+
 
       </ion-grid>
     </ion-row>

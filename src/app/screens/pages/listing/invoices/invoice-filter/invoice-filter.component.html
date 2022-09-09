@@ -116,7 +116,7 @@
         <ion-label class="walletClass" position="floating">From</ion-label>
         <ion-item class="filter-orders-item">
         
-          <ion-datetime placeholder="00/00/0000" displayFormat="yyyy-MM-dd" [(ngModel)]='filter.fromDate' max='2030' doneText="Done" cancelText="Cancel"></ion-datetime>
+          <ion-datetime placeholder="00/00/0000" displayFormat="yyyy-MM-dd" presentation="date" [(ngModel)]='filter.fromDate' max='2030' doneText="Done" cancelText="Cancel"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col class="filter-orders-col-icon" size="2">
@@ -130,7 +130,7 @@
       <ion-col size="10">
         <ion-label class="walletClass" position="floating">To</ion-label>
         <ion-item class="filter-orders-item">
-          <ion-datetime placeholder="00/00/0000" displayFormat="yyyy-MM-dd" [(ngModel)]='filter.toDate' max='{{currentDate}}' max='2030' doneText="Done" cancelText="Cancel"></ion-datetime>
+          <ion-datetime placeholder="00/00/0000" displayFormat="yyyy-MM-dd" presentation="date" [(ngModel)]='filter.toDate' max='{{currentDate}}' max='2030' doneText="Done" cancelText="Cancel"></ion-datetime>
         </ion-item>
       </ion-col>
       <ion-col class="filter-orders-col-icon" size="2">

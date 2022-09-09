@@ -1,0 +1,9 @@
+{
+
+    "product": {
+        "qty": "Quantity",
+        "available-qty": "Available Quantity",
+        "dtls": "Details"
+    }
+   
+}

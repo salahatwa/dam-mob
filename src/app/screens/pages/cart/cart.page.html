@@ -1,18 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-button>
+        <!-- (click)="openProfile()" -->
+        <div class="icon-link">
+          <span class="icon icon-user-profile"></span>
+        </div>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <div class="icon-link">
+          <span class="icon icon-notification"></span>
+        </div>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      <div class="icon-link">
+        <span class="icon icon-alinma-symbol"></span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
-  <h3 class="title">{{(cartItems$|async)?.length}} towards at cart</h3>
+ 
 
   <form [formGroup]="form" class="panel" style="height: 100%;">
 
+    <!-- <h3 class="title text-center">{{(cartItems$|async)?.length}} Items at cart</h3> -->
 
-     <!-- Symbol -->
-     <div id="search-overlay-container">
+    <div id="search-overlay-container">
       <div id="search-overlay" (click)="openSearch()"></div>
       <ion-item>
-        <ion-label position="stacked">Customers</ion-label>
-        <ion-select   placeholder="Select Customer" interface="action-sheet" mode="ios"
+        <ion-label position="stacked">{{ 'invoice.customers' | translate }}</ion-label>
+        <ion-select placeholder="{{ 'invoice.select-customer' | translate }}" interface="action-sheet" mode="ios"
           [interfaceOptions]="{header: 'Cust', cssClass: 'app-select'}" formControlName="customer" name="customer"
-  
           okText="OK" cancelText="Cancel">
 
           <ion-select-option *ngFor="let customer of customers" [value]="customer">
@@ -23,39 +49,35 @@
 
         <div *ngIf="!form.controls.customer.valid
                   && form.controls.customer.dirty" class="validator-error">
-         error message
+          error message
         </div>
       </ion-item>
     </div>
-    <!-- <tadawul-symbol [symbol]="order?.symbol"></tadawul-symbol> -->
-    <!--// -->
 
 
     <ion-item>
-      <ion-list>
-        <ion-item>
-          <ion-select placeholder="Select Product" [multiple]="true" (ionChange)="onChangeProduct($event)">
-            <ion-select-option *ngFor="let item of products" [value]="item">
-              {{ item?.name }}
-            </ion-select-option>
-          </ion-select>
-          <!-- <div *ngIf="!form.controls.portfolio.valid
-          && form.controls.portfolio.dirty" class="validator-error">
-{{ t.PLEASE_CHOOSE }} {{ t.PORTFOLIO }}
-</div> -->
-        </ion-item>
-      </ion-list>
+      <ion-label position="stacked">{{ 'invoice.products' | translate }}</ion-label>
+      <ion-select placeholder="{{ 'invoice.select-product' | translate }}" [multiple]="true" (ionChange)="onChangeProduct($event)" [interfaceOptions]="{header: 'Cust', cssClass: 'app-select'}" okText="OK" cancelText="Cancel">
+        <ion-select-option *ngFor="let item of products" [value]="item">
+          {{ item?.name }}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
 
-   
 
+
+    <div class="empty-cart" *ngIf="!(cartItems$|async)?.length">
+      <!-- <ion-icon name="d-cart"></ion-icon> -->
+      <ion-icon color="txt" slot="start" src="assets/icon/empty-search.svg"></ion-icon>
+      <p>{{ 'invoice.noitem' | translate }}</p>
+    </div>
 
 
 
     <ion-list *ngIf="(cartItems$|async)?.length>0" lines="none">
       <ion-item-sliding *ngFor="let item of cartItems$|async">
         <ion-item>
-          <app-cart-item [item]="item" (onChangeItem)="onChangeItem($event)"></app-cart-item>
+          <app-cart-item [item]="item" (onChangeItem)="onChangeItem($event)" (onFormChange)="onSubItemFormChange($event)"></app-cart-item>
         </ion-item>
         <ion-item-options side='end'>
           <ion-item-option (click)="removeFromCart(item)">
@@ -64,19 +86,10 @@
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
-
-
-
-    <div id="submit-button-container">
-      <app-button *ngIf="(cartItems$|async)?.length" (click)="createInvoice()">
-        Total: <span><sup>$</sup>{{totalAmount$|async|number:'1.2'}}</span>
-      </app-button>
-    </div>
-
-    <div class="empty-cart" *ngIf="!(cartItems$|async)?.length">
-      <ion-icon name="d-cart"></ion-icon>
-      <p>Your cart is empty</p>
-    </div>
-
   </form>
+
 </ion-content>
+
+<ion-footer>
+  <ion-button *ngIf="(cartItems$|async)?.length" (click)="createInvoice()" [disabled]="!isValidForm||form.invalid" shape="round" fill="solid" expand="block" color="success" class="mb-1 mx-1" routerLink="/login" class="ion-margin">{{ 'invoice.create' | translate }}  <sup>$</sup> {{totalAmount$|async|number:'1.2'}}</ion-button>
+</ion-footer>

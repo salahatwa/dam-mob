@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
 import { StorageService } from '../storage.service';
 
 
@@ -14,11 +13,14 @@ export class JwtService {
     this.storage.init();
   }
 
-  async init(){
+  async init() {
     await this.storage.init();
   }
 
-  getToken(): Promise<any> {
+  async getToken(): Promise<any> {
+    if (this.storage)
+      await this.storage.init();
+
     return this.storage.get(JwtService.TOKEN_KEY);
   }
 
@@ -27,7 +29,7 @@ export class JwtService {
   }
 
   destroyToken() {
-    // this.storage.deleteItem(JwtService.TOKEN_KEY);
+    this.storage.remove(JwtService.TOKEN_KEY);
   }
 
 }

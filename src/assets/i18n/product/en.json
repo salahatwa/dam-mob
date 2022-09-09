@@ -1,0 +1,21 @@
+{
+    "action": {
+        "label": "Actions",
+        "details": "View Details",
+        "delete": "Delete Product",
+        "update":"Update",
+        "cancel": "Cancel",
+        "loading": "Loading more products.."
+    },
+    "msg": {
+        "confirm-delete": "Are you sure you want to remove product?",
+        "success":{
+            "add":"Item Added Successfully",
+            "update":"Item Updated Successfully "
+        }
+    },
+    "btn": {
+        "yes": "Yes",
+        "no": "No"
+    }
+}

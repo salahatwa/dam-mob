@@ -1,9 +1,8 @@
-<h1 class="list-header">Products</h1>
 <div class="food-list">
-  <app-product-card *ngFor="let product of products" [item]="product" (clicked)="goToDetailPage($event)">
+  <app-product-card *ngFor="let product of products" [item]="product"  (clicked)="presentItemSheet(product?.id)">
   </app-product-card>
 
-  <ion-infinite-scroll (ionInfinite)="getItems(true, $event)">
+  <ion-infinite-scroll (ionInfinite)="getItems($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

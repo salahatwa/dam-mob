@@ -1,7 +1,8 @@
 {
-   "app": {
+   "common": {
       "dashboard": "Dashboard",
       "profile": "Profile",
-      "create-invoice": "Create Invoice"
+      "create-invoice": "Create Invoice",
+      "overview":"Overview"
    }
 }

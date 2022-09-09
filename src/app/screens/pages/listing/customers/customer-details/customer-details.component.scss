@@ -16,7 +16,7 @@ ion-content{
     }
 
     .card{
-        height: 75%;
+        height: 80%;
         width:100%;
         background: #fff;
         position: absolute;
@@ -26,14 +26,13 @@ ion-content{
 
         .image{
             position: absolute;
-            top:-6.5rem;
-            width:50%;
-            left:50%;
-            transform: translateX(-50%);
+            top: -4.5rem;
+            width: 25%;
+            transform: translateX(-100%);
         }
 
         .card-title{
-            margin-top: 35%;
+            margin-top: 15%;
             display:flex;
             justify-content: space-between;
             align-items: center;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Customer } from '@core/models/customer';
 import { IInvoice, ItemInvoice, ServiceType } from '@core/models/invoice';
 import { Product } from '@core/models/product';
@@ -7,12 +8,14 @@ import { CustomerService } from '@core/services/customer.service';
 import { InvoiceService } from '@core/services/invoice.service';
 import { ProductService } from '@core/services/product.service';
 import { AlertController, ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { CommonService } from '@shared/services/common.service';
 import { ToastService, ToastType } from '@shared/services/toast.service';
-import {  forkJoin, Observable } from 'rxjs';
+import { TranslateConfigService } from '@shared/services/translate.config.service';
+import { forkJoin, Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { CartService } from '../../services/cart.service';
-import { SearchPage } from '../listing/customers/search/search.page';
+import { CartService } from '../../core/services/cart.service';
+import { CustomerSelectDialogComponent } from '../listing/customers/customer-select-dialog/customer-select-dialog.page';
 
 @Component({
   selector: 'app-cart',
@@ -32,9 +35,11 @@ export class CartPage implements OnInit {
 
   form: FormGroup;
 
+  isValidForm: boolean = false;
+
   // constructor(private cartService: CartService, private alertController: AlertController) { }
 
-  constructor(private modalCtrl: ModalController, private cartService: CartService, private commonService: CommonService, private _fb: FormBuilder, private invoiceService: InvoiceService, private customerService: CustomerService, private productService: ProductService, private alertController: AlertController, private toastService: ToastService) {
+  constructor(private translateService: TranslateService, private router: Router, private modalCtrl: ModalController, private cartService: CartService, private commonService: CommonService, private _fb: FormBuilder, private invoiceService: InvoiceService, private customerService: CustomerService, private productService: ProductService, private alertController: AlertController, private toastService: ToastService) {
     this.buildForm();
   }
 
@@ -73,7 +78,7 @@ export class CartPage implements OnInit {
     for (let product of products) {
       if (this.cartService.isItemExist(product?.id)) {
         let invoiceItem: ItemInvoice = {
-          quantity: 0,
+          quantity: 1,
           bonus: 0,
           discount: 0,
           product: product
@@ -107,6 +112,10 @@ export class CartPage implements OnInit {
     this.cartService.onChangeItem(item, item.product.id);
   }
 
+  onSubItemFormChange(event) {
+    this.isValidForm = event?.valid;
+    console.log(this.isValidForm);
+  }
 
 
 
@@ -131,11 +140,10 @@ export class CartPage implements OnInit {
 
   async openSearch() {
     const modal = await this.modalCtrl.create({
-      component: SearchPage,
+      component: CustomerSelectDialogComponent,
       componentProps: {
         title: "Customers",
         customers: this.customers,
-        color: true ? "#21bf73" : "#da2d2d",
       },
     });
 
@@ -151,7 +159,6 @@ export class CartPage implements OnInit {
 
 
   createInvoice() {
-    console.log('CLICKED..');
 
     console.log(this.form.value);
     this.commonService.showSpinner();
@@ -163,8 +170,10 @@ export class CartPage implements OnInit {
 
     this.invoiceService.insertInvoice(result).pipe(finalize(() => {
       this.commonService.hideSpinner();
-    })).subscribe((data => {
-      console.log('DONE');
+    })).subscribe((invoice => {
+      console.log(invoice);
+      this.router.navigate(['invoice-details', invoice?.id]);
+
     }));
 
   }

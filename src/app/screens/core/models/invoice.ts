@@ -42,7 +42,7 @@ export interface ItemInvoice {
 
 export interface InvoiceStatusUpdate {
   id?: string;
-  paidDate?: Date;
+  paidDate?: string;
   paidAmt?: number;
   returnsDate?: Date;
   status?: InvoiceStatus;
@@ -59,6 +59,7 @@ export enum InvoiceStatus {
   PAID_PARTIALLY = 4,
   SAMPLE = 5
 }
+
 
 export enum ServiceType {
   INVOICE = 0,

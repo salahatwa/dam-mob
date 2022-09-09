@@ -15,8 +15,6 @@ export class CustomerDetailsComponent implements OnInit {
   customer: Customer;
   constructor(private toastCtrl: ToastController, private activatedRoute: ActivatedRoute, private common: CommonService, private customerService: CustomerService) {
     this.id = +this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
   }
 
   ngOnInit() { 

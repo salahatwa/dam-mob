@@ -1,4 +1,283 @@
-#title {
-    font-size: 4rem;
-    font-weight: 600;
-}
+@keyframes showLoginContent {
+    from {
+      max-height: 0;
+      opacity: 0;
+      top: 100px;
+      // margin-top: 0;
+      transition: all 1s;
+    }
+    to {
+      max-height: 500px;
+      opacity: 1;
+      top: 0;
+      // margin-top: auto !important;
+      transition: all 1s;
+    }
+  }
+  @keyframes addMarginBottom {
+    from {
+      margin-bottom: 0;
+    }
+    to {
+      margin-bottom: 100px;
+    }
+  }
+  // @keyframes moveLogo {
+  //   from {
+  //     top: 100px;
+  //   }
+  //   to {
+  //     top: 0;
+  //   }
+  // }
+  @keyframes showSwitchLanguage {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .login-screen {
+    --background: url('/assets/login/alinma-pattern-bg.svg') repeat top left #6b45bc;
+    --color: #99b9bc;
+    
+  
+    .gradient-bg {
+      content: '';
+      position: fixed;
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(to bottom, #6b45bc00 25%, #6b45bc 35%);
+      z-index: -1;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      // transition: 0.25s ease-out;
+      // animation: moveBG 1s linear 3s forwards;
+    }
+  
+    .login-content-wrapper {
+      // display: flex;
+      // flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      // overflow: auto;
+      // justify-content: space-evenly;
+      // transition: all 0.75s;
+      .form-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100vh;
+        transition: all 0.25s;
+      }
+  
+      .logo-img {
+        position: relative;
+        width: 245px;
+        max-width: 80%;
+        // top: 100px;
+        // margin: auto;
+        // margin-top: 100%;
+        margin-bottom: 0;
+        margin-inline: auto;
+        display: block;
+        transition: all 0.75s;
+        animation: addMarginBottom 0.75s linear 3s forwards;
+      }
+  
+      // > * {
+      //   margin-top: auto;
+      // }
+  
+      
+      .switch-language {
+        //display: block;
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        // max-height: 0;
+        opacity: 0;
+        // overflow: hidden;
+        transition: all 0.25s;
+        animation: showSwitchLanguage 0.25s linear 2s forwards;
+      }
+      .login-form {
+        position: relative;
+        top: 100px;
+        max-height: 0;
+        opacity: 0;
+        // overflow: hidden;
+        //margin-bottom: 0;
+        transition: all 0.75s;
+        //animation: addMarginBottom 0.75s linear 3.5s forwards, showLoginContent 0.75s linear 3.5s forwards;
+        animation:  showLoginContent 0.75s linear 3s forwards;
+      }
+  
+      // &.animation {
+      //   justify-content: space-evenly;
+  
+      //   .logo-img {
+      //     margin-bottom: 0;
+      //   }
+      //   .form-wrapper,
+      //   .switch-language {
+      //     max-height: 500px;
+      //     opacity: 1;
+      //     // margin-top: auto;
+      //     overflow: hidden;
+      //     animation: showLoginContent 0.75s ease-in 1s forwards;
+      //   }
+      // }
+    }
+  
+  
+    
+  
+  
+  
+  
+    ion-item.floating-input {
+      --border-radius: 5px;
+      padding: 5px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      --min-height: 50px;
+      color: #AD93E3;
+    
+      &::part(native) {
+          border: 1.5px solid #AD93E3;
+          background: #3A138E;
+      }
+    
+      // ion-label.label-floating {
+      // }
+      ion-input {
+          padding: 3px;
+          height: 30px;
+          color: #FFFFFF;
+      }
+    }
+  
+    .remember-me {
+      --background: none;
+      --background-activated: none;
+      --inner-border-width: 0;
+      --padding-start: 0;
+      // display: flex;
+      // align-items: center;
+    
+      // ion-label {
+      //   color: white;
+      //   padding: 0 5px;
+      // }
+    
+      ion-checkbox {
+        --border-radius: 4px;
+        --background: transparent;
+        --background-checked: #FFFFFF;
+        --border-color: #AD93E3;
+        --border-color-checked: #FFFFFF;
+        --checkmark-color: #6b45bc;
+        --checkmark-width: 2px;
+        --size: 20px;
+      }
+  
+      ion-label {
+        font-size: 13px;
+        color: #99B9BC;
+      }
+    }
+  
+    ion-router-link {
+      font-size: 14px;
+      --color: #AD93E3;
+  
+      &.open-account-link {
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        margin: 30px 0;
+      }
+    }
+  }
+  
+  
+  // .keyboard-is-open .switch-language {
+  //   //display: none !important;
+  //   opacity: 0 !important;
+  //   animation: none !important;
+  // }
+  
+  
+  
+  // .login-form {
+  //   // background: var(--ion-color-primary);
+  //   background: url('/assets/login/login-top-bg.svg');
+  //   background-position: top right;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  
+  //   ////////!TODO: This needs to be normalized
+  //   padding: 30px!important;
+  //   padding-top: 30px!important;
+  //   padding-top: calc(30px + constant(safe-area-inset-top))!important;
+  //   padding-top: calc(30px + env(safe-area-inset-top))!important;
+  //   ////////
+  // }
+  
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 9999;
+  }
+  .login-change-lang-button {
+    display: flex;
+    cursor: pointer;
+  }
+  
+  // .remember-me {
+  //   display: flex;
+  //   align-items: center;
+  
+  //   ion-label {
+  //     color: white;
+  //     padding: 0 5px;
+  //   }
+  
+  //   ion-checkbox {
+  //     --border-radius: 0;
+  //     --background: transparent;
+  //     --background-checked: transparent;
+  //     --border-color: white;
+  //     --border-color-checked: white;
+  //     --checkmark-color: var(--ion-color-success);
+  //   }
+  // }
+  
+  // ion-text {
+  //   color: var(--ion-color-primary-txt);
+  // }
+  
+  .forgot-text {
+    // color: var(--ion-color-white);
+    text-decoration: underline;
+  }
+  // ion-item {
+  //   --background: #3880ff;
+  //   --color: #fff;
+  // }
+  // ion-button {
+  //   --background: #062f77;
+  // }
+  
+  ion-slides {
+    height: 100%;
+  }

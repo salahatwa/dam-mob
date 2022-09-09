@@ -1,0 +1,26 @@
+{
+    "action": {
+        "label":"Actions",
+        "details":"View Details",
+        "delete": "Delete Invoice",
+        "print-invoice": "Print Invoice",
+        "print-tax-invoice": "Print Tax Invoice",
+        "change-status": "Change Status",
+        "cancel":"Cancel",
+        "loading":"Loading more invoices.."
+    },
+    "status": {
+        "new": "New",
+        "paid": "Paid",
+        "paid_partially": "Partially Paid",
+        "canceled": "Canceled",
+        "returns": "Returns"
+    },
+    "msg": {
+        "confirm-delete": "Are you sure you want to remove invoice?"
+    },
+    "btn": {
+        "yes": "Yes",
+        "no": "No"
+    }
+}

@@ -4,7 +4,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Customer } from '@core/models/customer';
 import { CustomerService } from '@core/services/customer.service';
 import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { CommonService } from '@shared/services/common.service';
+import { ToastService, ToastType } from '@shared/services/toast.service';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -17,25 +19,21 @@ export class CustomerOperationsComponent implements OnInit {
 
   customer: Customer;
   customerForm: FormGroup;
-  constructor(private fb: FormBuilder, private toastCtrl: ToastController, private activatedRoute: ActivatedRoute, private common: CommonService, public customerService: CustomerService) {
+  constructor(private translateService: TranslateService, private toastService: ToastService, private fb: FormBuilder, private toastCtrl: ToastController, private activatedRoute: ActivatedRoute, private common: CommonService, public customerService: CustomerService) {
+
     this.initForm({});
   }
 
   ngOnInit() {
-
-    // this.id = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.activatedRoute.params
       .subscribe(
         (params: Params) => {
           const id = params['id'];
           if (id.toUpperCase() != 'NEW')
-            this.getCustomerDetails(id);
-
+            this.getItemDetails(id);
         }
       );
-
-
 
   }
 
@@ -43,7 +41,7 @@ export class CustomerOperationsComponent implements OnInit {
   initForm(customer: Customer) {
     this.customerForm = this.fb.group({
       'id': [customer?.id],
-      'name': [customer?.name, [Validators.required, Validators.pattern('[0-9a-zA-Z\s\u0600-\u06FF]*')]],
+      'name': [customer?.name, [Validators.required]],
       'state': [customer?.state, [Validators.required, Validators.pattern('[0-9a-zA-Z\s\u0600-\u06FF]*')]],
       'email': [customer?.email, [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       'phone': [customer?.phone, []],
@@ -69,69 +67,36 @@ export class CustomerOperationsComponent implements OnInit {
       this.customerService.insertCustomer(customer).pipe(finalize(() => {
         this.common.hideSpinner();
       })).subscribe(data => {
-        this.presentToast();
-        // this.alertService.success(this.translateService.instant('notify.success.add'), this.alert);
+        this.toastService.showToast(this.translateService.instant('msg.success.add'), ToastType.SUCCESS);
       }, err => {
-        // this.alertService.error(err.message, this.alert);
+        this.toastService.showToast(err.message, ToastType.DANGER);
       });
 
     else {
       this.customerService.updateCustomer(customer).pipe(finalize(() => {
         this.common.hideSpinner();
       })).subscribe(data => {
-        this.presentToast();
-        // this.alertService.success(this.translateService.instant('notify.success.update'), this.alert);
+        this.toastService.showToast(this.translateService.instant('msg.success.update'), ToastType.SUCCESS);
       }, err => {
-        // this.alertService.error(err.message, this.alert);
+        this.toastService.showToast(err.message, ToastType.DANGER);
       });
     }
-    // this.resetForm(customerForm);
-
   }
 
 
-  getCustomerDetails(id) {
+  getItemDetails(id) {
     this.common.showSpinner();
     this.customerService.getCustomer(id).pipe(finalize(() => {
       this.common.hideSpinner();
-    })).subscribe(item => {
-      console.log(item);
-      this.initForm(item);
+    })).subscribe(customer => {
+      console.log(customer);
+      this.customer = customer;
+      this.initForm(customer);
     }, err => {
-      this.customer = {
-        name: 'SALA',
-        address: 'Benha',
-        phone: '011669668498',
-        email: 'salah@gmail.com',
-        state: 'Cairo'
-      }
+      this.toastService.showToast(err.message, ToastType.DANGER);
     });
   }
 
-
-  addItemToCart() {
-    // const cartItem: CartItem = {
-    //   id: this.food.id,
-    //   name: this.food.title,
-    //   price: this.food.price,
-    //   image: this.food.image,
-    //   quantity: 1
-    // };
-
-    // this.cartService.addToCart(cartItem);
-
-    this.presentToast();
-  }
-
-  async presentToast() {
-    const toast = await this.toastCtrl.create({
-      message: 'Food added to the cart',
-      mode: 'ios',
-      duration: 1000,
-      position: 'top'
-    });
-    toast.present();
-  }
 
 
 }

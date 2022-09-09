@@ -1,38 +1,52 @@
-<!-- [disabled]="!config.isLoggedIn" -->
 <ion-menu side="start" type="overlay" menuId="main" contentId="main" #sidemenu
   >
-  <ion-header>
-    <ion-toolbar color="danger">
-      <ion-title>SManager</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
+  <div id='header'>
+    <!-- MenuHeader -->
+    <!--this line responsable for direct to kyc pages [routerLink]="!AppComponent.ExpiredUserID ? ['/kyc/home'] : []" (click)="close()" -->
+    <ion-grid class="no-outline"  >
+      <ion-row>
+        <ion-col id='icon-container'>
+          <img src="{{(currentUser?.companyLogo)?currentUser?.companyLogo?.replace('http://','https://'):'assets/icon/profile-photo.svg'}}" id="profile-photo"  class="profile-photo">
+          <!-- <ion-icon src='assets/icon/profile-photo.svg' class="profile-photo"></ion-icon> -->
+        </ion-col>
+        <ion-col>
+          <div id='name'>
+            {{currentUser?.username |titlecase}}
+          </div>
+          <!-- <div id='modify'>
+            {{ t.MODIFY_ACCOUNT }}
+          </div> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </div>
     <ion-list>
-      <ion-item button>
-        <ion-label>
-          Settings
+
+      <ion-item button routerLink="/invoice-filter" (click)="close()" >
+        <ion-icon *ngIf="!dark" color="txt" slot="start" src="assets/icon/order-search-icon.svg"></ion-icon>
+        <ion-icon *ngIf="dark" color="txt" slot="start" src="assets/icon/order-search-icon-dark.svg"></ion-icon>
+        <ion-label color="txt">
+          {{'menu.invoice-search'|translate}}
         </ion-label>
-        <ion-icon name="settings-outline" slot="start"></ion-icon>
       </ion-item>
 
-      <ion-item button [routerLink]="'/invoice-filter'" (click)="sidemenu.close()">
-        <ion-label>
-          Invoice Search
+      <!-- <ion-item button routerLink="/portfolios/home" (click)="close()" >
+        <ion-icon *ngIf="!dark" color="txt" slot="start" src="assets/icon/portfolios.svg"></ion-icon>
+        <ion-icon *ngIf="dark" color="txt" slot="start" src="assets/icon/portfolios-dark.svg"></ion-icon>
+        <ion-label color="txt">
+          {{'menu.customer-search'|translate}}
         </ion-label>
-        <ion-icon name="settings-outline" slot="start"></ion-icon>
-      </ion-item>
+      </ion-item> -->
 
-      <ion-item-divider>
+     
+      <ion-item button color='danger' (click)="logout()">
+        <ion-icon *ngIf="!dark" slot="start" src="assets/icon/signout.svg"></ion-icon>
+        <ion-icon *ngIf="dark" slot="start" src="assets/icon/signout-dark.svg"></ion-icon>
         <ion-label>
-          Actions
+          {{'menu.logout'|translate}}
         </ion-label>
-      </ion-item-divider>
-      <ion-item button (click)="logout(); sidemenu.close()">
-        <ion-label>
-          Logout
-        </ion-label>
-        <ion-icon name="log-out-outline" slot="start"></ion-icon>
       </ion-item>
     </ion-list>
-  </ion-content>
 </ion-menu>

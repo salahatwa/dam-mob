@@ -22,22 +22,23 @@
     <div class="card-content">
       <div class="card-title">
         <h1 class="ion-no-margin">{{customer?.name}}</h1>
-        <p class="ion-no-margin"><sup>$</sup>{{customer?.phone}}</p>
+        <!-- <p class="ion-no-margin"><sup>$</sup>{{customer?.phone}}</p> -->
       </div>
     </div>
 
     <div class="rates">
-      <app-badge icon="d-time-forward" text="30m"></app-badge>
-      <app-badge icon="star-outline" text="4.5"></app-badge>
+      <!-- <app-badge icon="d-time-forward" text="30m"></app-badge> -->
+      <app-badge *ngIf="customer?.state" icon="locate" text="{{customer?.state}}"></app-badge>
     </div>
 
 
     <div class="about">
-      <h1>About</h1>
-      <p>{{customer?.address}}</p>
-      <p>{{customer?.email}}</p>
+      <h1>{{'customer.dtls' | translate}}</h1>
+      <p>{{'customer.address' | translate}} : {{customer?.address}}</p>
+      <p>{{'customer.email' | translate}} :{{customer?.email}}</p>
+      <p>{{'customer.phone' | translate}} :{{customer?.phone}}</p>
     </div>
 
-    <app-button (click)="addItemToCart()">Add To Cart</app-button>
+    <!-- <app-button (click)="addItemToCart()">Add To Cart</app-button> -->
   </div>
 </ion-content>

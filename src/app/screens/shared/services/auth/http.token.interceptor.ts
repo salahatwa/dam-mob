@@ -20,17 +20,14 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     return from(this.jwtService.getToken())
       .pipe(
         switchMap(token => {
-          console.log('>>>>>>>>>' + token);
+          console.log('1>>>>>>>>>' + token);
           if (token) {
             request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
           }
 
-          // if (!request.headers.has('Content-Type')) {
-          //   request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-          // }
 
-        
-          return next.handle(request).pipe(finalize(()=>{
+          console.log('2>>>>>>>>>' + token);
+          return next.handle(request).pipe(finalize(() => {
             this.config.cloudSyncing.next(false);
           })).pipe(
             catchError(
@@ -46,46 +43,10 @@ export class HttpTokenInterceptor implements HttpInterceptor {
         })
       );
 
-
   }
 
-  interlcept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const headersConfig = {
-      // 'Content-Type': 'application/json',
-      // 'Accept': 'application/json',
-      // 'Cache-Control': 'no-cache',
-      // 'Access-Control-Allow-Origin': '*'
-    };
-
-    this.jwtService.getToken().then((token) => {
-      console.log('>>>>>>>>>' + token);
-      if (token) {
-        headersConfig['Authorization'] = `Bearer ${token}`;
-      }
-    });
-
-
-
-
-
-
-
-    const request = req.clone({ setHeaders: headersConfig, withCredentials: false });
-
-    return next.handle(request).pipe(
-      catchError(
-        (err, caught) => {
-          if (err.status === 401) {
-            this.handleAuthError();
-            return of(err);
-          }
-          throw err;
-        }
-      )
-    );
-  }
   private handleAuthError() {
     this.jwtService.destroyToken();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/getting-start');
   }
 }

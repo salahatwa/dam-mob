@@ -80,3 +80,32 @@ ion-button {
     // overflow: hidden;
   }
 }
+
+
+ion-list {
+  ion-item {
+      // --min-height: 55px !important;
+      // border-bottom: 1px solid #e6eff0;
+      // margin-inline-start: 16px;
+      // --padding-start: 0;
+      // --inner-border-width: 0;
+
+      .menu-brief {
+        font-weight: bold;
+      }
+
+      .product-status {
+        font-size: 10px;
+        font-weight: bold;
+        padding: 2px 8px;
+        background: #E6EFF0;
+        border-radius: 3px;
+        color: #005157;
+
+        &.active {
+          background: #2ebd85;
+          color: #FFFFFF;
+        }
+      }
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "customer": {
+        "name": "Name",
+        "email": "Email",
+        "address": "Address",
+        "city":"City",
+        "phone":"Phone",
+        "add":"Add",
+        "update":"Update"
+    },
+    "msg": {
+        "confirm-delete": "Are you sure you want to remove customer?",
+        "success": {
+            "add": "Customer Added Successfully",
+            "update": "Customer Updated Successfully "
+        }
+    },
+    "btn": {
+        "yes": "Yes",
+        "no": "No"
+    }
+}

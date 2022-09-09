@@ -1,0 +1,21 @@
+{
+    "menu": {
+        "invoice-search": "Invoice Search",
+        "customer-search": "Customer Search",
+        "logout": "Logout"
+    },
+    "category": {
+        "invoice": "Invoices",
+        "customer": "Customers",
+        "product": "Products"
+    },
+    "common": {
+        "start": "Getting Start",
+        "appname": "Dam Pharm",
+        "desc": "This is a simple app that help you to manage and monitor your monthly / yearly / daily expenses and Incomes simply and easily",
+        "username": "User Name",
+        "password": "Password",
+        "login": "Login",
+        "forgot-password": "Forgot Password"
+    }
+}

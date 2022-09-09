@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/screens/shared/component/shared.module';
-import { CustomerFilterDialogComponent } from './customer-filter-dialog/customer-filter-dialog.component';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerComponent } from './customer.component';
+import { CustomerTranslationModule } from './customer.translation.module';
 
 
 
 @NgModule({
-  declarations: [CustomerComponent, CustomerFilterDialogComponent],
+  declarations: [CustomerComponent],
   imports: [
     SharedModule,
     CustomerRoutingModule,
-
+    CustomerTranslationModule
   ],
-  entryComponents: [CustomerFilterDialogComponent],
+  entryComponents: [],
   exports: [
     CustomerComponent,
     CustomerRoutingModule,

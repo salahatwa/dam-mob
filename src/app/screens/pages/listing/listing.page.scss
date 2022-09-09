@@ -1,6 +1,6 @@
 ion-content {
-    --padding-start: 2rem;
-    --padding-end: 2rem;
+    --padding-start: .5rem;
+    --padding-end: 1rem;
 }
 
 .categories {
@@ -10,13 +10,7 @@ ion-content {
     margin-top: 15px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
+
 h1 {
     font-size: 3rem;
     font-weight: 600;
@@ -40,9 +34,9 @@ h1 {
 
 .criteria-container {
     background-color: #fff;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    // margin-top: 10px;
+    // margin-left: 10px;
+    // margin-right: 10px;
     height: auto;
     border-bottom: 1px;
 }
@@ -54,5 +48,8 @@ h1 {
 .sticky-top{
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 999999999;
   }
+
+
+  #actionBtn { --background: #6b45bc !important; }

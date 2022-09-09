@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { App } from '@capacitor/app';
 // import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { IonRouterOutlet, Platform } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { finalize } from 'rxjs/operators';
 // import { finalize } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -23,7 +25,15 @@ export class LoginPage implements OnInit {
   loader: HTMLIonLoadingElement;
 
   showPassword: string = 'password';
-  authForm: FormGroup;
+  form: FormGroup;
+
+  containerClass: string = '';
+  username: string = "";
+  password = "";
+  appLang: string;
+  direction: string = 'rtl';
+
+  loading:boolean=false;
 
   constructor(
     private router: Router,
@@ -32,22 +42,22 @@ export class LoginPage implements OnInit {
     private routerOutlet: IonRouterOutlet,
     private fb: FormBuilder,
     private userService: UserService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private translate: TranslateService,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.platform.backButton.subscribeWithPriority(10, () => {
       if (!this.routerOutlet.canGoBack()) {
         App.exitApp();
       }
     });
-    this.authForm = this.fb.group({
+    this.form = this.fb.group({
       'username': ['', Validators.required],
       'password': ['', Validators.required]
     });
   }
 
   ngOnInit() {
-
-
     // this.platform.ready().then(() => {
     //   GoogleAuth.initialize({
     //     clientId: environment.googleClientid,
@@ -55,18 +65,28 @@ export class LoginPage implements OnInit {
     //     grantOfflineAccess: true,
     //   });
     // });
-
   }
 
   get f() {
-    return this.authForm.controls;
+    return this.form.controls;
   }
 
+  setKeyboardClass(check) {
+    this.containerClass = check ? 'keyboard-is-open' : ''
+  }
+
+  preventSpaceInUserName(value) {
+    this.username = value.replaceAll(' ', '');
+  }
+
+  preventSpaceInPassword(value) {
+    this.password = value.replaceAll(' ', '');
+  }
 
   onLogin() {
     this.common.showSpinner();
     console.log('>>>>>>>sdsdsd:::');
-    const credentials = this.authForm.value;
+    const credentials = this.form.value;
     this.userService
       .attemptAuth('login', credentials)
       .pipe(finalize(() => {
@@ -85,6 +105,38 @@ export class LoginPage implements OnInit {
       );
 
 
+  }
+
+  goToForgot(){
+
+  }
+
+  changeLang() {
+    if (this.translate.currentLang == 'en') {
+      this.appLang = 'ar'
+      this.handleLanguagePreferences('ar');
+      this.direction = 'rtl';
+    } else {
+      this.handleLanguagePreferences('en');
+      this.appLang = 'en'
+      this.direction = 'ltr';
+    }
+  }
+
+  handleLanguagePreferences(lang: string) {
+    if (lang == 'ar') {
+      this.translate.setDefaultLang('ar');
+      this.translate.use('ar');
+      this.appLang = 'ar';
+      this.document.documentElement.dir = 'rtl';
+    } else if (lang == 'en') {
+      this.translate.setDefaultLang('en');
+      this.appLang = 'en';
+      this.translate.use('en');
+      this.document.documentElement.dir = 'ltr';
+    }
+    // Settings.setUserPreferences(Constants._SETTINGS._PREFERRED_LANG, lang);
+    // localStorage.setItem(Constants._SETTINGS._PREFERRED_LANG, lang.toString());
   }
 
   gLogin() {
