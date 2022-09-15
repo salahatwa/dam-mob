@@ -1,4 +1,9 @@
 {
+    "btn": {
+        "yes": "Ok",
+        "no": "Cancel",
+        "confirm":"Confirm"
+    },
     "menu": {
         "invoice-search": "Invoice Search",
         "customer-search": "Customer Search",
@@ -16,6 +21,121 @@
         "username": "User Name",
         "password": "Password",
         "login": "Login",
-        "forgot-password": "Forgot Password"
+        "forgot-password": "Forgot Password",
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "create-invoice": "Create Invoice",
+        "overview": "Overview",
+        "search":"Search",
+        "back-search":"Back to search",
+        "search-result":"Search Results",
+        "empty-search-result":"Empty Search Results"
+    },
+    "invoice": {
+        "noitem": "You Not Select any products yet",
+        "customers": "Customers",
+        "products": "Products",
+        "select-customer": "Select Customer",
+        "select-product": "Select Product",
+        "create": "Add Invoice with Amount ",
+        "total": "Invoice Total Amount",
+        "price": "Price",
+        "available-qty": "Available Qty",
+        "qty": "Quantity",
+        "bonus": "Bonus",
+        "discount": "Discount",
+        "select-status": "Select Status",
+        "periodDt":"Period",
+        "fromDate": "From Date",
+        "toDate": "To Date",
+        "id": "Bill Number",
+        "dt": "Bill Date",
+        "customer": "Customer Name",
+        "address": "Customer Address",
+        "product": "Product",
+        "s-n": "S.NO",
+        "av-qty": "Available Quantity",
+        "pre-paid-amount":"Previous Paid Amount",
+        "paid-amount":"Paid Amount",
+        "pick-paid-dt":"Pick Paid Date",
+        "action": {
+            "label": "Actions",
+            "details": "View Details",
+            "delete": "Delete Invoice",
+            "print-invoice": "Print Invoice",
+            "print-tax-invoice": "Print Tax Invoice",
+            "change-status": "Change Status",
+            "cancel": "Cancel",
+            "loading": "Loading more invoices.."
+        },
+        "status": {
+            "label":"Label",
+            "new": "New",
+            "paid": "Paid",
+            "paid_partially": "Partially Paid",
+            "canceled": "Canceled",
+            "returns": "Returns",
+            "current-status":"Current Invoice status",
+            "change-current-status":"Select New Invoice status"
+        },
+        "msg": {
+            "confirm-delete": "Are you sure you want to remove invoice?",
+            "confirm-change-status":"Are you sure you want to change status ?"
+        }
+    },
+    "customer": {
+        "name": "Customer Name",
+        "email": "Email",
+        "address": "Address",
+        "city": "City",
+        "phone": "Phone",
+        "add": "Add",
+        "update": "Update",
+        "label": "Customers",
+        "dtls": "Details",
+        "close": "Close",
+        "filter": "Search by Customer Name",
+        "action": {
+            "label": "Actions",
+            "details": "View Details",
+            "delete": "Delete Customer",
+            "update": "Update Customer",
+            "cancel": "Cancel",
+            "loading": "Loading more customers.."
+        },
+        "msg": {
+            "confirm-delete": "Are you sure you want to remove customer?",
+            "success": {
+                "add": "Customer Added Successfully",
+                "update": "Customer Updated Successfully "
+            }
+        }
+    },
+    "product": {
+        "name": "Name",
+        "price": "Price",
+        "quantity": "Quantity",
+        "code": "Code",
+        "location": "Factory",
+        "add": "Add",
+        "update": "Update",
+        "qty": "Quantity",
+        "available-qty": "Available Quantity",
+        "dtls": "Details",
+        "action": {
+            "label": "Actions",
+            "details": "View Details",
+            "delete": "Delete Product",
+            "update": "Update",
+            "cancel": "Cancel",
+            "loading": "Loading more products.."
+        },
+        "msg": {
+            "confirm-delete": "Are you sure you want to remove product?",
+            "success": {
+                "add": "Item Added Successfully",
+                "update": "Item Updated Successfully "
+            }
+        }
     }
 }

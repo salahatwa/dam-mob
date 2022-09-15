@@ -5,7 +5,7 @@
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Invoice Search Result
+      {{'common.search-result'|translate}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,56 +14,32 @@
 
   <ion-grid style="padding: 0px;">
     <ion-row class="criteria-container sticky-top">
-      <ion-col size="6" style="border-bottom: 1px solid #cddfe1;">
-        <span class="textClass">Customer:</span>
+      <ion-col size="6" style="border-bottom: 1px solid #6b45bc;">
+        <span class="textClass">{{"invoice.customer" | translate}}:</span>
         <span class="valueClass">{{filter?.customer?.name}}</span>
       </ion-col>
-      <ion-col size="6" style="border-bottom: 1px solid #cddfe1;padding-top: 0px;">
+      <ion-col size="6" style="border-bottom: 1px solid #6b45bc;padding-top: 0px;">
         <ion-row id="period-container">
-          <ion-col size="4" class="textClass">From:</ion-col>
-          <ion-col style="padding: 0px;" size="7">
-            <span class="valueClass">{{filter?.fromDate}}</span>
+          <ion-col size="4" class="textClass">{{"invoice.periodDt" | translate}}:</ion-col>
+          <ion-col style="padding: 0px;" size="8">
+            <span class="valueClass">{{filter?.fromDate}}</span><br/>
             <span class="valueClass">{{filter?.toDate}}</span>
           </ion-col>
         </ion-row>
       </ion-col>
       <ion-col size="6">
-        <span class="textClass">Status:</span>
-        <span class="valueClass">{{filter?.statusList}}</span>
+        <span class="textClass">{{"invoice.status.label" | translate}}:</span>
+        <span class="valueClass"><dam-invoice-status-badge *ngFor="let status of filter?.statusList" [status]="status"></dam-invoice-status-badge></span>
       </ion-col>
       <ion-col size="6">
-        <span class="textClass">State:</span>
+        <span class="textClass">{{"customer.city" | translate}}:</span>
         <span class="valueClass">{{filter?.state}}</span>
       </ion-col>
     </ion-row>
     <ion-row style="margin-top: 10px;">
       <ion-grid class="standing-order-header">
         
-          <!-- <ion-list>
-
-           
-
-            <ion-item button *ngFor="let item of invoices">
-              <ion-avatar slot="start">
-                <img src="assets/images/invoice.png">
-              </ion-avatar>
-
-              <ion-label text-wrap>
-                <h3>{{ item.customer?.name }}</h3>
-                {{ item.totalPrice }}
-              </ion-label>
-
-          
-
-            </ion-item>
-
-            <ion-infinite-scroll (ionInfinite)="getItems($event)">
-              <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-              </ion-infinite-scroll-content>
-            </ion-infinite-scroll>
-
-
-          </ion-list> -->
+       
           <dam-invoice-list [filter]="filter"></dam-invoice-list>
 
 
@@ -77,9 +53,15 @@
 <ion-footer>
 
   <ion-grid class="ion-padding">
-    <app-button (click)="backToSearch()" expand="block" size="" color="primary" fill="solid" strong="false"
-      target="_blank">
-      Back to Search
-    </app-button>
+
+    <ion-button
+    (click)="backToSearch()"
+    color="primary"
+    expand="block"
+    fill="solid"
+    class="ion-margin"
+    >{{ "common.back-search" | translate }}</ion-button
+  >
+
   </ion-grid>
 </ion-footer>

@@ -62,10 +62,10 @@ export class ProductComponent implements OnInit {
 
   async presentItemSheet(id) {
     const actionSheet = await this.actionSheetController.create({
-      header: this.translateService.instant('action.label'),
+      header: this.translateService.instant('product.action.label'),
       cssClass: 'sheet-class',
       buttons: [{
-        text: this.translateService.instant('action.details'),
+        text: this.translateService.instant('product.action.details'),
         role: 'selected',
         icon: 'eye',
         id: 'details-button',
@@ -74,20 +74,20 @@ export class ProductComponent implements OnInit {
           this.router.navigate(['product-details', id]);
         }
       }, {
-        text: this.translateService.instant('action.update'),
+        text: this.translateService.instant('product.action.update'),
         icon: 'create',
         data: id,
         handler: () => {
           this.router.navigate(['product-opt', id]);
         }
       }, {
-        text: this.translateService.instant('action.delete'),
+        text: this.translateService.instant('product.action.delete'),
         icon: 'trash',
         data: id,
         handler: () => this.removeItem(id)
       },
       {
-        text: this.translateService.instant('action.cancel'),
+        text: this.translateService.instant('product.action.cancel'),
         icon: 'close',
         role: 'cancel',
         handler: () => {
@@ -119,8 +119,8 @@ export class ProductComponent implements OnInit {
   async removeItem(id) {
     console.log(id);
     const alert = await this.alertController.create({
-      header: this.translateService.instant('action.delete'),
-      message: this.translateService.instant('msg.confirm-delete'),
+      header: this.translateService.instant('product.action.delete'),
+      message: this.translateService.instant('product.msg.confirm-delete'),
       buttons: [
         {
           text: this.translateService.instant('btn.yes'),

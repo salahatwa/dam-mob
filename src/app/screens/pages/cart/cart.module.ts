@@ -8,7 +8,6 @@ import { ValidatorsModule } from '../../shared/validators/validators.module';
 import { CustomerSelectDialogsModule } from '../listing/customers/customer-select-dialog/customer-select-dialog.module';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { CartPage } from './cart.page';
-import { CartTranslationModule } from './cart.translation.module';
 
 
 @NgModule({
@@ -16,8 +15,7 @@ import { CartTranslationModule } from './cart.translation.module';
     SharedModule,
     CartPageRoutingModule,
     ValidatorsModule,
-    CustomerSelectDialogsModule,
-    CartTranslationModule
+    CustomerSelectDialogsModule
   ],
   declarations: [CartPage, CartItemComponent],
   exports: [SharedModule, ValidatorsModule],

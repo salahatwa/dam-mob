@@ -10,7 +10,6 @@ import { TranslateConfigService } from '@shared/services/translate.config.servic
 @NgModule({
   imports: [
     SharedModule,
-    TranslateModule,
     GettingStartPageRoutingModule
   ],
   declarations: [GettingStartPage]

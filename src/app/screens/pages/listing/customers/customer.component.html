@@ -25,3 +25,13 @@
 </ion-list>
 
 
+<div [hidden]="customers?.length != 0">
+  <dam-empty-result
+  message="{{'common.empty-search-result' | translate}}"
+  image="assets/icon/empty-orders.svg"
+  >
+  </dam-empty-result>
+</div>
+
+
+

@@ -1,0 +1,34 @@
+<!-- <img src="{{image}}">
+<ion-text  color="primary" class="ion-text-center">
+  <p class="ion-text-center">
+    {{message}}
+  </p>
+  <p class="ion-text-center-two">
+    {{secondMessage}}
+  </p>
+</ion-text>
+<app-button
+  *ngIf="button"
+  buttonType="button"
+  (click)="click()"
+  fill="outline"
+  strong=true
+>{{buttonValue}}</app-button> -->
+
+
+<!-- <ion-icon slot="icon-only" color='danger' name="arrow-back"></ion-icon> -->
+
+
+<div slot="error" *ngIf="control.errors?.required && control.touched" class="error-message">
+  <div class="error-message">
+    <ion-note color="danger" *ngIf="control.errors?.required">Field is required
+    </ion-note>
+  </div>
+  <div class="error-message">
+    <ion-note color="danger" *ngIf="control.errors?.min">Value can't be less than {{control.errors?.minValue}}
+    </ion-note>
+  </div>
+  <div class="error-message">
+    <ion-note color="danger" *ngIf="control.errors?.max">Value can't exceed : {{control.errors?.maxValue}}</ion-note>
+  </div>
+</div>

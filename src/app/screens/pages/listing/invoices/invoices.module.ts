@@ -4,7 +4,6 @@ import { InvoiceListModule } from './invoice-list/invoice-list.module';
 import { InvoiceStatusModule } from './invoice-status/invoice-status.module';
 import { InvoicesRoutingModule } from './invoices-routing.module';
 import { InvoicesComponent } from './invoices.component';
-import { InvoicesTranslationModule } from './invoices.translation.module';
 
 
 
@@ -14,11 +13,9 @@ import { InvoicesTranslationModule } from './invoices.translation.module';
     SharedModule,
     InvoiceListModule,
     InvoicesRoutingModule,
-    InvoiceStatusModule,
-    InvoicesTranslationModule
+    InvoiceStatusModule
   ],
-  exports: [InvoicesComponent,
-    InvoicesTranslationModule],
+  exports: [InvoicesComponent],
 
 })
 export class InvoicesModule { }

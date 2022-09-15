@@ -19,8 +19,9 @@ export class CommonService {
   async showSpinner() {
     this.isLoading = true;
     this.loader = await this.loadingController.create({
-      cssClass: '',
-      message: 'Please wait...',
+      spinner:null,
+      cssClass: 'custom-loader',
+      message: '<div class="custom-loader"><div class="loading-wrapper2 active"><div class="spinner-wrapper"><div class="cube-wrapper"><div class="cube"> <div class="front"></div><div class="back"></div><div class="top"></div><div class="bottom"></div><div class="left"></div><div class="right"></div></div></div> </div> </div></div>',
     });
     await this.loader.present();
     if (!this.isLoading) {

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductCardModule } from 'src/app/screens/component/product-card/product-card.module';
 import { SharedModule } from 'src/app/screens/shared/component/shared.module';
 import { ProductComponent } from './product.component';
-import { ProductTranslationModule } from './product.translation.module';
 
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
   declarations: [ProductComponent],
   imports: [
     SharedModule, ProductCardModule,
-    RouterModule.forChild(routes),ProductTranslationModule
+    RouterModule.forChild(routes)
   ],
   exports: [
     ProductComponent

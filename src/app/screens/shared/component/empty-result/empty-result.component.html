@@ -1,0 +1,16 @@
+<img src="{{image}}">
+<ion-text  color="primary" class="ion-text-center">
+  <p class="ion-text-center">
+    {{message}}
+  </p>
+  <p class="ion-text-center-two">
+    {{secondMessage}}
+  </p>
+</ion-text>
+<app-button
+  *ngIf="button"
+  buttonType="button"
+  (click)="click()"
+  fill="outline"
+  strong=true
+>{{buttonValue}}</app-button>

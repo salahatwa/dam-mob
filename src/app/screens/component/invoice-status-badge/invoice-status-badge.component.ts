@@ -17,23 +17,23 @@ export class InvoiceStatusBadgeComponent implements OnInit {
 
       case InvoiceStatus.NEW:
         this.statusColor = 'primary';
-        this.statusKey='status.new';
+        this.statusKey='invoice.status.new';
         break;
       case InvoiceStatus.PAID:
         this.statusColor = 'success';
-        this.statusKey='status.paid';
+        this.statusKey='invoice.status.paid';
         break;
       case InvoiceStatus.PAID_PARTIALLY:
         this.statusColor = 'warning';
-        this.statusKey='status.paid_partially';
+        this.statusKey='invoice.status.paid_partially';
         break;
       case InvoiceStatus.CANCELED:
         this.statusColor = 'danger';
-        this.statusKey='status.canceled';
+        this.statusKey='invoice.status.canceled';
         break;
       case InvoiceStatus.RETURNS:
         this.statusColor = 'secondary';
-        this.statusKey='status.returns';
+        this.statusKey='invoice.status.returns';
         break;
 
       default:

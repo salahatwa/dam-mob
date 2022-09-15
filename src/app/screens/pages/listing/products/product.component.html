@@ -7,3 +7,14 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </div>
+
+
+<div [hidden]="products?.length != 0">
+  <dam-empty-result
+  message="{{'common.empty-search-result' | translate}}"
+  image="assets/icon/empty-orders.svg"
+  >
+  </dam-empty-result>
+</div>
+
+

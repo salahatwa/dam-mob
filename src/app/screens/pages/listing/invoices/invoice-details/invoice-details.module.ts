@@ -4,12 +4,11 @@ import { CollapsibleViewtModule } from 'src/app/screens/component/stok-quick-vie
 import { SharedModule } from 'src/app/screens/shared/component/shared.module';
 import { InvoiceDetailsRoutingModule } from './invoice-details-routing.module';
 import { InvoiceDetailsComponent } from './invoice-details.component';
-import { InvoiceDtlsTranslationModule } from './invoice-details.translation.module';
 
 
 @NgModule({
   declarations: [InvoiceDetailsComponent],
-  imports: [SharedModule, InvoiceDetailsRoutingModule, CollapsibleListModule, CollapsibleViewtModule, InvoiceDtlsTranslationModule],
+  imports: [SharedModule, InvoiceDetailsRoutingModule, CollapsibleListModule, CollapsibleViewtModule],
   exports: [],
 })
 export class InvoiceDetailsModule { }

@@ -1,21 +1,27 @@
 <ion-list>
-  <ion-item button *ngFor="let item of invoices"  (click)="presentItemSheet(item)">
-      <ion-avatar slot="start">
-        <ion-img  src="assets/icon/reports.svg"></ion-img>
-      </ion-avatar>
-  
-  
-      <ion-label>
-        <div class="menu-title">{{item.customer?.name | truncate:[20, '...']}}</div>
-        <div class="menu-brief">{{item.totalPrice | number : '1.2-2' }}</div>
-      </ion-label>
-      <ion-label slot="end">
-        <dam-invoice-status-badge [status]="item?.status"></dam-invoice-status-badge>
-      </ion-label>
+  <ion-item button *ngFor="let item of invoices" (click)="presentItemSheet(item)">
+    <ion-avatar slot="start">
+      <ion-img src="assets/icon/reports.svg"></ion-img>
+    </ion-avatar>
+
+
+    <ion-label>
+      <div class="menu-title">{{item.customer?.name | truncate:[20, '...']}}</div>
+      <div class="menu-brief">{{item.totalPrice | number : '1.2-2' }}</div>
+    </ion-label>
+    <ion-label slot="end">
+      <dam-invoice-status-badge [status]="item?.status"></dam-invoice-status-badge>
+    </ion-label>
   </ion-item>
 
   <ion-infinite-scroll (ionInfinite)="getItems($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="'action.loading' | translate">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="'invoice.action.loading' | translate">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-list>
+
+
+<div [hidden]="invoices?.length != 0">
+  <dam-empty-result message="{{'common.empty-search-result' | translate}}" image="assets/icon/empty-orders.svg">
+  </dam-empty-result>
+</div>

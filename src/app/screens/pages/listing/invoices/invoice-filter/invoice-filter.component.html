@@ -1,12 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar class="standing-order-toolbar">
-    <ion-buttons slot="start">
-      <ion-back-button text=""></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{ "invoice.search" | translate }}</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
   <div class="header">
     <ion-buttons>
@@ -51,16 +42,20 @@
 
       <ion-item class="floating-input">
         <ion-label position="floating">{{
-          "invoice.status" | translate
+          "invoice.status.label" | translate
         }}</ion-label>
         <ion-select
           placeholder="{{ 'invoice.select-status' | translate }}"
           [multiple]="true"
           name="statusList"
           [(ngModel)]="filter.statusList"
-          [interfaceOptions]="{ header: 'Status', cssClass: 'app-select' }"
-          okText="OK"
-          cancelText="Cancel"
+          [interfaceOptions]="{cssClass: 'app-select' }"
+          okText="{{
+            'btn.yes' | translate
+          }}"
+          cancelText="{{
+            'btn.no' | translate
+          }}"
         >
           <ion-select-option
             *ngFor="let invStatus of statusTypes"
@@ -95,8 +90,8 @@
                 [(ngModel)]="filter.fromDate"
                 [ngModelOptions]="{ standalone: true }"
                 showDefaultButtons="true"
-                doneText="{{ 'btn.ok' | translate }}"
-                cancelText="{{ 'btn.cancel' | translate }}"
+                doneText="{{ 'btn.yes' | translate }}"
+                cancelText="{{ 'btn.no' | translate }}"
               >
               </ion-datetime>
             </ion-content>
@@ -128,8 +123,8 @@
                 [(ngModel)]="filter.toDate"
                 [ngModelOptions]="{ standalone: true }"
                 showDefaultButtons="true"
-                doneText="{{ 'btn.ok' | translate }}"
-                cancelText="{{ 'btn.cancel' | translate }}"
+                doneText="{{ 'btn.yes' | translate }}"
+                cancelText="{{ 'btn.no' | translate }}"
               >
               </ion-datetime>
             </ion-content>
@@ -140,29 +135,12 @@
   </div>
 </ion-content>
 <ion-footer>
-  <!-- <ion-button id='save-button'  expand="block" (click)="search()"  >
-  Filter orders
-  </ion-button> -->
-  <!-- <ion-grid class="ion-padding">
-    <app-button
-      (click)="search()"
-      expand="block"
-      size=""
-      color="primary"
-      fill="solid"
-      strong="false"
-      target="_blank"
-    >
-      Search
-    </app-button>
-  </ion-grid> -->
-  <!-- <tadawul-loader *ngIf="showLoader"></tadawul-loader> -->
   <ion-button
     (click)="search()"
     color="primary"
     expand="block"
     fill="solid"
     class="ion-margin"
-    >{{ "invoice.search" | translate }}</ion-button
+    >{{ 'common.search' | translate }}</ion-button
   >
 </ion-footer>

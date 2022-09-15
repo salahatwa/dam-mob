@@ -85,10 +85,10 @@ export class CustomerComponent implements OnInit {
 
   async presentItemSheet(id) {
     const actionSheet = await this.actionSheetController.create({
-      header: this.translateService.instant('action.label'),
+      header: this.translateService.instant('customer.action.label'),
       cssClass: 'sheet-class',
       buttons: [{
-        text: this.translateService.instant('action.details'),
+        text: this.translateService.instant('customer.action.details'),
         role: 'selected',
         icon: 'eye',
         id: 'details-button',
@@ -97,14 +97,14 @@ export class CustomerComponent implements OnInit {
           this.router.navigate(['customer-details', id]);
         }
       }, {
-        text: this.translateService.instant('action.update'),
+        text: this.translateService.instant('customer.action.update'),
         icon: 'create',
         data: id,
         handler: () => {
           this.router.navigate(['customer-opt', id]);
         }
       }, {
-        text: this.translateService.instant('action.delete'),
+        text: this.translateService.instant('customer.action.delete'),
         icon: 'trash',
         data: id,
         handler: () => {
@@ -112,7 +112,7 @@ export class CustomerComponent implements OnInit {
         }
       },
       {
-        text: this.translateService.instant('action.cancel'),
+        text: this.translateService.instant('customer.action.cancel'),
         icon: 'close',
         role: 'cancel',
         handler: () => {
@@ -144,8 +144,8 @@ export class CustomerComponent implements OnInit {
 
   async removeItem(id) {
     const alert = await this.alertController.create({
-      header: this.translateService.instant('action.delete'),
-      message: this.translateService.instant('msg.confirm-delete'),
+      header: this.translateService.instant('customer.action.delete'),
+      message: this.translateService.instant('customer.msg.confirm-delete'),
       buttons: [
         {
           text: this.translateService.instant('btn.yes'),

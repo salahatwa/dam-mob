@@ -1,25 +1,20 @@
-<ion-item>
-  <ion-label position="stacked">Invoice Amount : </ion-label>
-  <ion-input [(ngModel)]="_invoice.totalPrice"></ion-input>
-</ion-item>
 
 
 <form class="form" #form="ngForm"  novalidate>
 
   <ion-item class="floating-input">
-    <ion-label position="floating">Pick Paid date</ion-label>
+    <ion-label position="floating">{{'invoice.pick-paid-dt' | translate}}</ion-label>
     <ion-input [(ngModel)]="statusRq.paidDate" id="paidAt"  name="paidAt" #paidAt="ngModel" required>
     </ion-input>
     <ion-icon name="calendar" class="icon" slot="start"></ion-icon>
-    <ion-note color="danger" *ngIf="(paidAt.touched || form.submitted) && paidAt.errors?.required">Paid Date is
-      required</ion-note>
+    <ion-note color="danger" *ngIf="(paidAt.touched || form.submitted) && paidAt.errors?.required">Paid Date isrequired</ion-note>
 
     <ion-modal trigger="paidAt" class="date-time-modal">
       <ng-template>
         <ion-content>
           <ion-datetime (ionChange)="onSelectChange($event)"  displayFormat="yyyy-MM-dd" class="rounded-date"
             presentation="date" [(ngModel)]="statusRq.paidDate"  [ngModelOptions]="{standalone:true}" showDefaultButtons="true"
-            doneText="{{ 'app.OK' | translate  }}" cancelText="{{ 'app.CANCEL' | translate  }}">
+            doneText="{{ 'btn.yes' | translate  }}" cancelText="{{ 'btn.no' | translate  }}">
           </ion-datetime>
         </ion-content>
       </ng-template>
