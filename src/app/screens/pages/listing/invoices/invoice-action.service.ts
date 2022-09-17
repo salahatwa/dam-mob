@@ -48,6 +48,13 @@ export class InvoiceActionService {
           this.downloadPDF(invoice?.id);
         }
       }, {
+        text: this.translateService.instant('invoice.action.print-taxbill'),
+        icon: 'print',
+        data: invoice?.id,
+        handler: () => {
+          this.downloadTaxBillPDF(invoice?.id);
+        }
+      }, {
         text: this.translateService.instant('invoice.action.delete'),
         icon: 'trash',
         data: invoice?.id,
@@ -89,7 +96,16 @@ export class InvoiceActionService {
         handler: () => {
           this.downloadPDF(invoice?.id);
         }
-      }, {
+      },
+      {
+        text: this.translateService.instant('invoice.action.print-taxbill'),
+        icon: 'print',
+        data: invoice?.id,
+        handler: () => {
+          this.downloadTaxBillPDF(invoice?.id);
+        }
+      }
+        , {
         text: this.translateService.instant('invoice.action.delete'),
         icon: 'trash',
         data: invoice?.id,
@@ -120,6 +136,23 @@ export class InvoiceActionService {
   public downloadPDF(id): void {
     this.commonService.showSpinner();
     this.invoiceService.downloadInvoice(id).pipe(finalize(() => {
+      this.commonService.hideSpinner();
+    })).subscribe(data => {
+      // this.fileService.openBlobFile(data, "application/pdf","invoice");
+
+      const blob = new Blob([data], { type: "application/pdf" });
+      FileService.writeAndOpenFile(blob, "invoice.pdf");
+    }, err => {
+      this.toastService.showToast(err.message, ToastType.DANGER);
+    });
+
+  }
+
+
+
+  public downloadTaxBillPDF(id): void {
+    this.commonService.showSpinner();
+    this.invoiceService.downloadTaxbill(id).pipe(finalize(() => {
       this.commonService.hideSpinner();
     })).subscribe(data => {
       // this.fileService.openBlobFile(data, "application/pdf","invoice");

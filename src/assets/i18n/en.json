@@ -63,6 +63,7 @@
             "details": "View Details",
             "delete": "Delete Invoice",
             "print-invoice": "Print Invoice",
+            "print-taxbill":"Print TaxBill",
             "print-tax-invoice": "Print Tax Invoice",
             "change-status": "Change Status",
             "cancel": "Cancel",

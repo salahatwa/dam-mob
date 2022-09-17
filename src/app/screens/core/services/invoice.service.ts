@@ -67,6 +67,12 @@ export class InvoiceService {
     }));
   }
 
+  downloadTaxbill(id: string) {
+    return this.apiService.getGetFile('/invoice/download/taxbill/' + id).pipe(map(data => {
+      return data;
+    }));
+  }
+
 
   downloadStatment(filter: any) {
     return this.apiService.postGetFile('/invoice/download/statment', filter).pipe(map(data => {

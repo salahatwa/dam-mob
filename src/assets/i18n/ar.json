@@ -64,6 +64,7 @@
             "details": "تفاصيل الفاتورة",
             "delete": "حذف الفاتورة",
             "print-invoice": "طباعة الفاتورة",
+            "print-taxbill": "طباعة الفاتورة الضريبية",
             "print-tax-invoice": "طباعة الفاتورة الضريبية",
             "change-status": "تغيير الحالة",
             "cancel": "إلغاء",
