@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { IInvoice, InvoiceStatusUpdate } from '@core/models/invoice';
 import { InvoiceService } from '@core/services/invoice.service';
 import { ActionSheetController, AlertController, ModalController, NavController } from '@ionic/angular';
@@ -175,7 +175,11 @@ export class InvoiceActionService {
       this.commonService.hideSpinner();
     })).subscribe(data => {
       this.toastService.showToast('Success Delete', ToastType.SUCCESS);
-      this.router.navigate(['home/listing/invoices']);
+
+      const navigationExtras: NavigationExtras = {
+        queryParams: { 'time': Date.now() }
+      };
+      this.router.navigate(['home/listing/invoices', navigationExtras]);
     }, err => {
       this.toastService.showToast(err.message, ToastType.DANGER);
     });
