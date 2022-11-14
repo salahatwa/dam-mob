@@ -85,7 +85,7 @@ export class LoginPage implements OnInit {
 
   onLogin() {
     this.common.showSpinner();
-    console.log('>>>>>>>sdsdsd:::');
+    console.log('<<<<trye login>>>>');
     const credentials = this.form.value;
     this.userService
       .attemptAuth('login', credentials)
@@ -99,7 +99,7 @@ export class LoginPage implements OnInit {
         },
         err => {
           console.log(err);
-          this.toastService.showToast(err.message, ToastType.DANGER);
+          this.toastService.showToast(err, ToastType.DANGER);
           // this.errorMessages = err.error?.status ? err.error.status : 'Something went wrong, Please try again later';
         }
       );

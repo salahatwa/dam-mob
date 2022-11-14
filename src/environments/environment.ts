@@ -7,8 +7,10 @@ export const environment = {
   production: false,
   // api: 'http://localhost:8080/api',
   // unauth_api: 'http://localhost:8080/unauth',
-  api: 'https://www.zattona.com/api',
-  unauth_api: 'https://www.zattona.com/unauth',
+  // api: 'https://www.zattona.com/api',
+  // unauth_api: 'https://www.zattona.com/unauth',
+  api: 'http://zattona.com/api',
+  unauth_api: 'http://zattona.com/unauth',
   googleClientid: '298206622192-ke686j1gaesu2t9fj72oad9tfep3esb9.apps.googleusercontent.com',
 };
 
